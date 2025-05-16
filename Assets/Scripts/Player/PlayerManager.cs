@@ -25,6 +25,7 @@ namespace Player
 
         private void FixedUpdate()
         {
+            PlayerMovement.HandleMovement();
             PlayerTorch.HandleTorch();
         }
     }

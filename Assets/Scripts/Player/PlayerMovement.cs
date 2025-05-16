@@ -8,10 +8,13 @@ namespace Player
         [SerializeField] private PlayerManager playerManager;
         [SerializeField] private ScrollingTexture scrollingBackground;
         [SerializeField] private ScrollingTexture scrollingForeground;
+        private ScrollingObject[] scrollingObjects;
         
         [Header("Movement Settings")]
-        [SerializeField] private float scrollingSpeed = 0.5f;
+        [SerializeField] private float backgroundSpeed = 0.5f;
+        [SerializeField] private float scrollingSpeed = 5f;
         [SerializeField] private float foregroundSpeed = 0.25f;
+        [SerializeField] private float loopingXPos = 17;
 
         private PlayerInput playerInput;
         
@@ -24,19 +27,34 @@ namespace Player
         private void Start()
         {
             playerInput = playerManager.PlayerInput;
+
+            scrollingObjects = FindObjectsByType<ScrollingObject>(FindObjectsSortMode.None);
+            
+            foreach (ScrollingObject scrollingObject in scrollingObjects)
+            {
+                scrollingObject.SetLoopingPos(loopingXPos);
+            }
         }
 
-        private void FixedUpdate()
+        public void HandleMovement()
         {
             switch (playerInput.Horizontal)
             {
                 case > 0:
-                    scrollingBackground.Scroll(scrollingSpeed);
+                    scrollingBackground.Scroll(backgroundSpeed);
                     scrollingForeground.Scroll(foregroundSpeed);
+                    foreach (ScrollingObject scrollingObject in scrollingObjects)
+                    {
+                        scrollingObject.Scroll(-scrollingSpeed);
+                    }
                     break;
                 case < 0:
-                    scrollingBackground.Scroll(-scrollingSpeed);
+                    scrollingBackground.Scroll(-backgroundSpeed);
                     scrollingForeground.Scroll(-foregroundSpeed);
+                    foreach (ScrollingObject scrollingObject in scrollingObjects)
+                    {
+                        scrollingObject.Scroll(scrollingSpeed);
+                    }
                     break;
             }
         }
