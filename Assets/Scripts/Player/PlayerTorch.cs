@@ -30,6 +30,8 @@ namespace Player
         private Coroutine torchDrainCoroutine;
         private bool isTorchActive;
 
+        private bool flashlightDisabled;
+
         #endregion
 
         #region Torch Visual Settings
@@ -101,6 +103,9 @@ namespace Player
 
         private void ToggleTorch()
         {
+            if (flashlightDisabled)
+                return;
+            
             if (playerInput.ToggleTorch)
             {
                 torchLight.SetActive(!torchLight.activeSelf);
@@ -139,6 +144,20 @@ namespace Player
 
                 yield return new WaitForSeconds(drainRate);
             }
+        }
+
+        public void DisableFlashlight()
+        {
+            flashlightDisabled = true;
+            torchLight.SetActive(false);
+            isTorchActive = false;
+            StartCoroutine(FlashlightDisabledCoroutine());
+        }
+        
+        private IEnumerator FlashlightDisabledCoroutine()
+        {
+            yield return new WaitForSeconds(3f);
+            flashlightDisabled = false;
         }
     }
 }

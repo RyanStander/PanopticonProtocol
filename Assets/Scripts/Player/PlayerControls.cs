@@ -44,6 +44,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EquipEmpGun"",
+                    ""type"": ""Button"",
+                    ""id"": ""7d0db658-500b-4501-8d56-cf6998727ce8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FireEmpGun"",
+                    ""type"": ""Button"",
+                    ""id"": ""b7e44256-cba4-4221-b9e5-18614db44dbd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -90,6 +108,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""ToggleTorch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""deb86b15-f915-45c8-ac4e-08dfe0df2142"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EquipEmpGun"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b117a03a-b2cd-4de1-8ee9-4b81bd5bc9ce"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FireEmpGun"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -100,6 +140,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_ObservationControls = asset.FindActionMap("ObservationControls", throwIfNotFound: true);
         m_ObservationControls_Horizontal = m_ObservationControls.FindAction("Horizontal", throwIfNotFound: true);
         m_ObservationControls_ToggleTorch = m_ObservationControls.FindAction("ToggleTorch", throwIfNotFound: true);
+        m_ObservationControls_EquipEmpGun = m_ObservationControls.FindAction("EquipEmpGun", throwIfNotFound: true);
+        m_ObservationControls_FireEmpGun = m_ObservationControls.FindAction("FireEmpGun", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -163,12 +205,16 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<IObservationControlsActions> m_ObservationControlsActionsCallbackInterfaces = new List<IObservationControlsActions>();
     private readonly InputAction m_ObservationControls_Horizontal;
     private readonly InputAction m_ObservationControls_ToggleTorch;
+    private readonly InputAction m_ObservationControls_EquipEmpGun;
+    private readonly InputAction m_ObservationControls_FireEmpGun;
     public struct ObservationControlsActions
     {
         private @PlayerControls m_Wrapper;
         public ObservationControlsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Horizontal => m_Wrapper.m_ObservationControls_Horizontal;
         public InputAction @ToggleTorch => m_Wrapper.m_ObservationControls_ToggleTorch;
+        public InputAction @EquipEmpGun => m_Wrapper.m_ObservationControls_EquipEmpGun;
+        public InputAction @FireEmpGun => m_Wrapper.m_ObservationControls_FireEmpGun;
         public InputActionMap Get() { return m_Wrapper.m_ObservationControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -184,6 +230,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ToggleTorch.started += instance.OnToggleTorch;
             @ToggleTorch.performed += instance.OnToggleTorch;
             @ToggleTorch.canceled += instance.OnToggleTorch;
+            @EquipEmpGun.started += instance.OnEquipEmpGun;
+            @EquipEmpGun.performed += instance.OnEquipEmpGun;
+            @EquipEmpGun.canceled += instance.OnEquipEmpGun;
+            @FireEmpGun.started += instance.OnFireEmpGun;
+            @FireEmpGun.performed += instance.OnFireEmpGun;
+            @FireEmpGun.canceled += instance.OnFireEmpGun;
         }
 
         private void UnregisterCallbacks(IObservationControlsActions instance)
@@ -194,6 +246,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ToggleTorch.started -= instance.OnToggleTorch;
             @ToggleTorch.performed -= instance.OnToggleTorch;
             @ToggleTorch.canceled -= instance.OnToggleTorch;
+            @EquipEmpGun.started -= instance.OnEquipEmpGun;
+            @EquipEmpGun.performed -= instance.OnEquipEmpGun;
+            @EquipEmpGun.canceled -= instance.OnEquipEmpGun;
+            @FireEmpGun.started -= instance.OnFireEmpGun;
+            @FireEmpGun.performed -= instance.OnFireEmpGun;
+            @FireEmpGun.canceled -= instance.OnFireEmpGun;
         }
 
         public void RemoveCallbacks(IObservationControlsActions instance)
@@ -215,5 +273,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {
         void OnHorizontal(InputAction.CallbackContext context);
         void OnToggleTorch(InputAction.CallbackContext context);
+        void OnEquipEmpGun(InputAction.CallbackContext context);
+        void OnFireEmpGun(InputAction.CallbackContext context);
     }
 }

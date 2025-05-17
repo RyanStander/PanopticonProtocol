@@ -9,6 +9,9 @@ namespace Player
         public float Horizontal;
         public bool ToggleTorch;
 
+        public bool EquipEmpGun;
+        public bool FireEmpGun;
+
         private void Awake()
         {
             playerControls = new PlayerControls();
@@ -25,6 +28,12 @@ namespace Player
 
             playerControls.ObservationControls.ToggleTorch.performed += i => ToggleTorch = true;
             playerControls.ObservationControls.ToggleTorch.canceled += i => ToggleTorch = false;
+            
+            playerControls.ObservationControls.EquipEmpGun.performed += i => EquipEmpGun = true;
+            playerControls.ObservationControls.EquipEmpGun.canceled += i => EquipEmpGun = false;
+            
+            playerControls.ObservationControls.FireEmpGun.performed += i => FireEmpGun = true;
+            playerControls.ObservationControls.FireEmpGun.canceled += i => FireEmpGun = false;
         }
     }
 }
