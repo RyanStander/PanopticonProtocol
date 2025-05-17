@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3708230324245497440}
   - component: {fileID: 5733136602802001620}
   - component: {fileID: 7134895566758013105}
+  - component: {fileID: 7916639572100229721}
   m_Layer: 0
   m_Name: TedTheMonster
   m_TagString: Untagged
@@ -110,11 +111,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7673ca72708f495d8291498aca6afac8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterSprite: {fileID: 3708230324245497440}
+  MonsterSprite: {fileID: 3708230324245497440}
   MonsterSpawnOffset: {x: 0, y: -0.24, z: 0}
+  monsterEscapeLogic: {fileID: 7916639572100229721}
+  moveSpeed: 5
+--- !u!114 &7916639572100229721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7411494640753593104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7bcfce7b13d40cfaa0638a39aafd332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterManager: {fileID: 7134895566758013105}
   jailedLayer: 1
   escapedLayer: 5
   timeRandomizer: 2
   jailTime: 5
   escapeTime: 5
-  moveSpeed: 5
+  HasEscaped: 0

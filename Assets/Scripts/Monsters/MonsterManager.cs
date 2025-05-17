@@ -1,63 +1,43 @@
 ﻿using System;
 using System.Collections;
+using Environment;
 using UnityEngine;
 
 namespace Monsters
 {
     public class MonsterManager : MonoBehaviour
     {
-        [SerializeField] private SpriteRenderer monsterSprite;
-        public Vector3 MonsterSpawnOffset = new Vector3(0, 0, 0);
+        public SpriteRenderer MonsterSprite;
+        public Vector3 MonsterSpawnOffset = new(0, 0, 0);
+        [SerializeField] private MonsterEscapeLogic monsterEscapeLogic;
 
-        [SerializeField] private int jailedLayer = 1;
-        [SerializeField] private int escapedLayer = 5;
-        [SerializeField] private float timeRandomizer = 2f;
-        [SerializeField] private float jailTime = 5f;
-        private float jailTimeStamp;
-        [SerializeField] private float escapeTime = 5f;
-        private float escapeTimeStamp;
+        
         [SerializeField] private float moveSpeed = 5f;
-        private bool isAttemptingToEscape = false;
-        private bool hasEscaped = false;
+        
         private Coroutine roamingCoroutine;
+        
+        public JailCell AssignedJailCell;
 
         private void OnValidate()
         {
-            if (monsterSprite == null)
-                monsterSprite = GetComponent<SpriteRenderer>();
+            if (MonsterSprite == null)
+                MonsterSprite = GetComponent<SpriteRenderer>();
+            
+            if (monsterEscapeLogic == null)
+                monsterEscapeLogic = GetComponent<MonsterEscapeLogic>();
         }
 
-        private void Start()
+        public void SetData(JailCell jailCell)
         {
-            // Set the monster to the jailed layer
-            monsterSprite.sortingOrder = jailedLayer;
-            jailTimeStamp = Time.time + jailTime + UnityEngine.Random.Range(0, timeRandomizer);
+            AssignedJailCell = jailCell;
         }
-
-        //monster will attempt to escape from the jail after waiting its jail time + a random time, then it will start attempting to escape
-        //for the duration of the escape time + a random time, thereafter it will be considered free and will roam left and right with its move speed
 
         private void FixedUpdate()
         {
-            if (Time.time > jailTimeStamp && !isAttemptingToEscape)
-            {
-                isAttemptingToEscape = true;
-                escapeTimeStamp = Time.time + escapeTime + UnityEngine.Random.Range(0, timeRandomizer);
-            }
+            monsterEscapeLogic.HandleEscape();
 
-            if (isAttemptingToEscape)
-            {
-                if (Time.time > escapeTimeStamp && !hasEscaped)
-                {
-                    hasEscaped = true;
-                    monsterSprite.sortingOrder = escapedLayer;
-                    // Start roaming left and right
-                    if (roamingCoroutine == null)
-                    {
-                        roamingCoroutine = StartCoroutine(Roam());
-                    }
-                }
-            }
+            if (!monsterEscapeLogic.HasEscaped) return;
+            roamingCoroutine ??= StartCoroutine(Roam());
         }
 
         private IEnumerator Roam()
@@ -72,8 +52,8 @@ namespace Monsters
                 float moveTimer = 0f;
 
                 // Optional: flip the sprite
-                if (monsterSprite != null)
-                    monsterSprite.flipX = direction > 0;
+                if (MonsterSprite != null)
+                    MonsterSprite.flipX = direction > 0;
 
                 while (moveTimer < moveDuration)
                 {

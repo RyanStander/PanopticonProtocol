@@ -146,6 +146,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0645de863fce4a8ea23164e6825381d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cellDoorCloseButton: {fileID: 3264487158762128639}
+  cellDoorOpenButton: {fileID: 8060235006254585115}
+  cellDoor: {fileID: 2841602747281774726}
+  cellSeal: {fileID: 4081651049891660589}
 --- !u!1 &3264487158762128639
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,6 +160,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1416416471851707204}
   - component: {fileID: 1259683177231680832}
+  - component: {fileID: 4538173034853814320}
+  - component: {fileID: 1064017561595443159}
   m_Layer: 0
   m_Name: CloseButton
   m_TagString: Untagged
@@ -172,7 +178,7 @@ Transform:
   m_GameObject: {fileID: 3264487158762128639}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.24, y: 0.657, z: 0}
+  m_LocalPosition: {x: 1.24, y: 0.657, z: -2}
   m_LocalScale: {x: 0.27521, y: 0.27521, z: 0.27521}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -231,6 +237,65 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &4538173034853814320
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3264487158762128639}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &1064017561595443159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3264487158762128639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 726d340189194f8c89404223c1eb1174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jailCell: {fileID: 7472127626947441169}
+  isOpenButton: 0
 --- !u!1 &4081651049891660589
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,8 +530,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0030500293, y: -0.0028999746, z: 0}
-    m_Extent: {x: 1.00085, y: 1.0004, z: 0}
+    m_Center: {x: 0.0018000007, y: -0.0018499494, z: 0}
+    m_Extent: {x: 0.9998, y: 1.0078499, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -491,6 +556,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3772322864790499424}
   - component: {fileID: 2245716354733898771}
+  - component: {fileID: 1675332511282464422}
+  - component: {fileID: 8396820846397030673}
   m_Layer: 0
   m_Name: OpenButton
   m_TagString: Untagged
@@ -507,7 +574,7 @@ Transform:
   m_GameObject: {fileID: 8060235006254585115}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.24, y: 1.083, z: 0}
+  m_LocalPosition: {x: 1.24, y: 1.083, z: -2}
   m_LocalScale: {x: 0.27521, y: 0.27521, z: 0.27521}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -566,6 +633,65 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1675332511282464422
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8060235006254585115}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &8396820846397030673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8060235006254585115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 726d340189194f8c89404223c1eb1174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jailCell: {fileID: 7472127626947441169}
+  isOpenButton: 1
 --- !u!1 &8510916587030073445
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,8 +758,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0024499893, y: 0.0011000037, z: 0}
-    m_Extent: {x: 1.00335, y: 1.0078001, z: 0}
+    m_Center: {x: -0.0010499954, y: 0.002750039, z: 0}
+    m_Extent: {x: 1.00865, y: 1.00675, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0

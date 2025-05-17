@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
                 int randomMonsterIndex = UnityEngine.Random.Range(0, monsters.Length);
                 GameObject monsterPrefab = monsters[randomMonsterIndex];
                 MonsterManager monsterManager = monsterPrefab.GetComponent<MonsterManager>();
+                monsterManager.SetData(randomCell);
                 Instantiate(monsterPrefab, randomCell.transform.position + monsterManager.MonsterSpawnOffset, Quaternion.identity);
             }
         }
