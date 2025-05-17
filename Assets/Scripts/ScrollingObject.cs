@@ -20,10 +20,8 @@ public class ScrollingObject : MonoBehaviour
         loopXPos = x;
     }
 
-    public void Scroll(float speed = 0.5f)
+    private void FixedUpdate()
     {
-        transform.position += new Vector3(Time.deltaTime * speed, 0, 0);
-
         if (transform.position.x < -loopXPos)
         {
             transform.position = new Vector3(loopXPos, yOffset, zOffset);
@@ -32,5 +30,10 @@ public class ScrollingObject : MonoBehaviour
         {
             transform.position = new Vector3(-loopXPos, yOffset, zOffset);
         }
+    }
+
+    public void Scroll(float speed = 0.5f)
+    {
+        transform.position += new Vector3(Time.deltaTime * speed, 0, 0);
     }
 }

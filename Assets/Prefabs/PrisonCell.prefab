@@ -94,6 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4855371257834652626}
   - component: {fileID: 4382172278479117631}
+  - component: {fileID: 7472127626947441169}
   m_Layer: 0
   m_Name: PrisonCell
   m_TagString: Untagged
@@ -131,6 +132,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e581aac329ed8147ae34c8197b51524, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7472127626947441169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3208948240597679734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0645de863fce4a8ea23164e6825381d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3264487158762128639
@@ -452,8 +465,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0038999915, y: 0.00079995394, z: 0}
-    m_Extent: {x: 1.0012, y: 1.0060999, z: 0}
+    m_Center: {x: 0.0030500293, y: -0.0028999746, z: 0}
+    m_Extent: {x: 1.00085, y: 1.0004, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -619,8 +632,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.003700018, y: -0.0012999773, z: 0}
-    m_Extent: {x: 1.0029, y: 1.0078, z: 0}
+    m_Center: {x: -0.0024499893, y: 0.0011000037, z: 0}
+    m_Extent: {x: 1.00335, y: 1.0078001, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
