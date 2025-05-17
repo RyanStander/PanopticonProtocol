@@ -35,6 +35,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleTorch"",
+                    ""type"": ""Button"",
+                    ""id"": ""aaf01f95-0813-41e8-8dc0-a3df4e475551"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -70,6 +79,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Horizontal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""865eeaaf-9018-4bab-86ef-e6777a911d17"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleTorch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -79,6 +99,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         // ObservationControls
         m_ObservationControls = asset.FindActionMap("ObservationControls", throwIfNotFound: true);
         m_ObservationControls_Horizontal = m_ObservationControls.FindAction("Horizontal", throwIfNotFound: true);
+        m_ObservationControls_ToggleTorch = m_ObservationControls.FindAction("ToggleTorch", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -141,11 +162,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_ObservationControls;
     private List<IObservationControlsActions> m_ObservationControlsActionsCallbackInterfaces = new List<IObservationControlsActions>();
     private readonly InputAction m_ObservationControls_Horizontal;
+    private readonly InputAction m_ObservationControls_ToggleTorch;
     public struct ObservationControlsActions
     {
         private @PlayerControls m_Wrapper;
         public ObservationControlsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Horizontal => m_Wrapper.m_ObservationControls_Horizontal;
+        public InputAction @ToggleTorch => m_Wrapper.m_ObservationControls_ToggleTorch;
         public InputActionMap Get() { return m_Wrapper.m_ObservationControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -158,6 +181,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Horizontal.started += instance.OnHorizontal;
             @Horizontal.performed += instance.OnHorizontal;
             @Horizontal.canceled += instance.OnHorizontal;
+            @ToggleTorch.started += instance.OnToggleTorch;
+            @ToggleTorch.performed += instance.OnToggleTorch;
+            @ToggleTorch.canceled += instance.OnToggleTorch;
         }
 
         private void UnregisterCallbacks(IObservationControlsActions instance)
@@ -165,6 +191,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Horizontal.started -= instance.OnHorizontal;
             @Horizontal.performed -= instance.OnHorizontal;
             @Horizontal.canceled -= instance.OnHorizontal;
+            @ToggleTorch.started -= instance.OnToggleTorch;
+            @ToggleTorch.performed -= instance.OnToggleTorch;
+            @ToggleTorch.canceled -= instance.OnToggleTorch;
         }
 
         public void RemoveCallbacks(IObservationControlsActions instance)
@@ -185,5 +214,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     public interface IObservationControlsActions
     {
         void OnHorizontal(InputAction.CallbackContext context);
+        void OnToggleTorch(InputAction.CallbackContext context);
     }
 }
