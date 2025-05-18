@@ -1,4 +1,5 @@
 ﻿using System;
+using Spine.Unity;
 using UnityEngine;
 
 namespace Monsters
@@ -17,7 +18,7 @@ namespace Monsters
         private bool isAttemptingToEscape = false;
         public bool HasEscaped;
 
-        private SpriteRenderer monsterSprite;
+        private MeshRenderer monsterMesh;
 
         private void OnValidate()
         {
@@ -28,8 +29,8 @@ namespace Monsters
         private void Start()
         {
             // Set the monster to the jailed layer
-            monsterSprite = monsterManager.MonsterSprite;
-            monsterSprite.sortingOrder = jailedLayer;
+            monsterMesh = monsterManager.MonsterMesh;
+            monsterMesh.sortingOrder = jailedLayer;
             jailTimeStamp = Time.time + jailTime + UnityEngine.Random.Range(0, timeRandomizer);
         }
 
@@ -60,7 +61,7 @@ namespace Monsters
                 }
 
                 HasEscaped = true;
-                monsterSprite.sortingOrder = escapedLayer;
+                monsterMesh.sortingOrder = escapedLayer;
             }
         }
     }

@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections;
 using Environment;
+using Spine.Unity;
 using UnityEngine;
 
 namespace Monsters
 {
     public class MonsterManager : MonoBehaviour
     {
-        public SpriteRenderer MonsterSprite;
+        public SkeletonAnimation MonsterSkeleton;
+        public MeshRenderer MonsterMesh;
         public Vector3 MonsterSpawnOffset = new(0, 0, 0);
         [SerializeField] private MonsterEscapeLogic monsterEscapeLogic;
 
@@ -20,8 +22,11 @@ namespace Monsters
 
         private void OnValidate()
         {
-            if (MonsterSprite == null)
-                MonsterSprite = GetComponent<SpriteRenderer>();
+            if (MonsterSkeleton == null)
+                MonsterSkeleton = GetComponent<SkeletonAnimation>();
+            
+            if (MonsterMesh == null)
+                MonsterMesh = GetComponent<MeshRenderer>();
             
             if (monsterEscapeLogic == null)
                 monsterEscapeLogic = GetComponent<MonsterEscapeLogic>();
@@ -50,10 +55,13 @@ namespace Monsters
                 // Walk for a short time (randomized)
                 float moveDuration = UnityEngine.Random.Range(0.5f, 2f);
                 float moveTimer = 0f;
-
-                // Optional: flip the sprite
-                if (MonsterSprite != null)
-                    MonsterSprite.flipX = direction > 0;
+                
+                if (direction > 0)
+                    MonsterSkeleton.skeleton.ScaleX = -1;
+                else
+                    MonsterSkeleton.skeleton.ScaleX = 1;
+                
+                MonsterSkeleton.AnimationState.SetAnimation(0, "M1_walk", true);
 
                 while (moveTimer < moveDuration)
                 {
@@ -61,6 +69,8 @@ namespace Monsters
                     moveTimer += Time.deltaTime;
                     yield return null; // wait one frame
                 }
+                
+                MonsterSkeleton.AnimationState.SetAnimation(0, "M1_idle", true);
 
                 // Wait/idle after moving
                 float idleDuration = UnityEngine.Random.Range(0.5f, 2f);
