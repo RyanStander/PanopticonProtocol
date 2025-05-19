@@ -1,4 +1,5 @@
 ﻿using System;
+using Environment;
 
 namespace Monsters
 {
@@ -8,6 +9,9 @@ namespace Monsters
         public static event Action<string> OnMonsterKill;
         public static event Action<ScrollingObject> OnNewScrollingObject; 
         public static event Action OnScrollingObjectDelete;
+        public static event Action<JailCell> OnJailCellSealed;
+        public static event Action<JailCell> OnJailCellUnsealed; 
+        public static event Action OnFaciliyNoPower;
         
         public static void MonsterHit(int rewardAmount)
         {
@@ -27,6 +31,21 @@ namespace Monsters
         public static void ScrollingObjectDelete()
         {
             OnScrollingObjectDelete?.Invoke();
+        }
+        
+        public static void JailCellSealed(JailCell jailCell)
+        {
+            OnJailCellSealed?.Invoke(jailCell);
+        }
+        
+        public static void JailCellUnsealed(JailCell jailCell)
+        {
+            OnJailCellUnsealed?.Invoke(jailCell);
+        }
+        
+        public static void FacilityNoPower()
+        {
+            OnFaciliyNoPower?.Invoke();
         }
     }
 }

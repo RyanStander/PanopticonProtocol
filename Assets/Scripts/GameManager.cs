@@ -10,7 +10,7 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private DifficultyScalingData difficultyScalingData;
+    public DifficultyScalingData DifficultyScalingData;
     [SerializeField] private PlayerManager playerManager;
     [SerializeField] private List<JailCell> unOccupiedJailCells;
     private List<JailCell> occupiedJailCells = new();
@@ -132,9 +132,9 @@ public class GameManager : MonoBehaviour
 
     private int GetSpawnCount()
     {
-        float scaled = difficultyScalingData.BaseSpawnCount *
-                       Mathf.Pow(1f + difficultyScalingData.SpawnGrowthRate, PersistentData.CurrentShift - 1);
-        return Mathf.Min(Mathf.CeilToInt(scaled), difficultyScalingData.MaxSpawnCount);
+        float scaled = DifficultyScalingData.BaseSpawnCount *
+                       Mathf.Pow(1f + DifficultyScalingData.SpawnGrowthRate, PersistentData.CurrentShift - 1);
+        return Mathf.Min(Mathf.CeilToInt(scaled), DifficultyScalingData.MaxSpawnCount);
     }
 
     #region Shift Logic

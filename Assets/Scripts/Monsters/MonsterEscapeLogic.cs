@@ -8,8 +8,7 @@ namespace Monsters
 {
     public class MonsterEscapeLogic : MonoBehaviour
     {
-        [SerializeField] private string cellDoorShakeAnimation = "M1_CellDoor_shake";
-        [SerializeField] private string cellDoorBreakAnimation = "M1_CellDoor_break";
+        [SerializeField] private bool isBaiter;
         [SerializeField] private string idleToBreakAnimation = "idle_to_break";
         [SerializeField] private string breakLoopAnimation = "break_loop";
         [SerializeField] private string breakOpenAnimation = "break_open";
@@ -65,8 +64,10 @@ namespace Monsters
 
                     entry.Complete += (_) =>
                     {
-                        if (!string.IsNullOrEmpty(cellDoorShakeAnimation))
-                            monsterManager.AssignedJailCell.PlayAnimation(cellDoorShakeAnimation, true);
+                        if(isBaiter)
+                             monsterManager.AssignedJailCell.ShakeBaiter();
+                        else
+                            monsterManager.AssignedJailCell.Shake();
                     };
                 }
 
@@ -89,8 +90,12 @@ namespace Monsters
                 HasEscaped = true;
                 if (!string.IsNullOrEmpty(breakOpenAnimation))
                     monsterManager.MonsterSkeleton.AnimationState.SetAnimation(0, breakOpenAnimation, false);
-                if (!string.IsNullOrEmpty(cellDoorBreakAnimation))
-                    monsterManager.AssignedJailCell.PlayAnimation(cellDoorBreakAnimation);
+                
+                if(isBaiter)
+                    monsterManager.AssignedJailCell.BreakDoorBaiter();
+                else
+                    monsterManager.AssignedJailCell.BreakDoor();
+                
                 monsterMesh.sortingOrder = escapedLayer;
             }
         }

@@ -209,9 +209,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleAnimationName: idle
   MonsterManager: {fileID: 3994115334289893122}
-  RoamBeforeObjective: 1
+  RoamBeforeObjective: 0
   RoamTime: 10
-  IdleDuringObjective: 1
+  IdleDuringObjective: 0
   RandomIdleTime: 2
   jumpscareAnimationName: LykhoJumpscare
   pathTargets: []
