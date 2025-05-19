@@ -1,0 +1,16 @@
+M2.png
+size:655,111
+filter:Linear,Linear
+pma:true
+M2Arms
+bounds:2,8,179,101
+M2HandL
+bounds:562,5,91,104
+M2HandR
+bounds:329,2,112,107
+M2Head1
+bounds:443,17,92,117
+rotate:90
+M2Head2
+bounds:183,9,100,144
+rotate:90

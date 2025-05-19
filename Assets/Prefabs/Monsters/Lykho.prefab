@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &110869218792321045
+--- !u!1 &4268072652401344501
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,31 +8,31 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1889871328578261739}
-  - component: {fileID: 1570222610788983569}
-  - component: {fileID: 7922889117786397683}
-  - component: {fileID: 2672114512733121509}
-  - component: {fileID: 1806763393250791849}
-  - component: {fileID: 5220017220673237097}
-  - component: {fileID: 5906212627842707289}
-  - component: {fileID: 7282198310595362205}
-  - component: {fileID: -8299061921924051802}
-  - component: {fileID: 6889408889497053124}
-  - component: {fileID: 3636796501757603389}
+  - component: {fileID: 5720373937167134442}
+  - component: {fileID: 6452994670217979877}
+  - component: {fileID: 6206465269748803543}
+  - component: {fileID: 2753827958366187292}
+  - component: {fileID: 6221483699251163380}
+  - component: {fileID: 3994115334289893122}
+  - component: {fileID: 8305154945643573479}
+  - component: {fileID: 8901661790253237368}
+  - component: {fileID: 5420432121178870019}
+  - component: {fileID: 1454894874433278036}
+  - component: {fileID: 1326450269057374202}
   m_Layer: 7
-  m_Name: Babayko
+  m_Name: Lykho
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1889871328578261739
+--- !u!4 &5720373937167134442
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 110869218792321045}
+  m_GameObject: {fileID: 4268072652401344501}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -41,21 +41,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &1570222610788983569
+--- !u!33 &6452994670217979877
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 110869218792321045}
+  m_GameObject: {fileID: 4268072652401344501}
   m_Mesh: {fileID: 0}
---- !u!23 &7922889117786397683
+--- !u!23 &6206465269748803543
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 110869218792321045}
+  m_GameObject: {fileID: 4268072652401344501}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -69,7 +69,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 799c2ed945e63c84e8bb1315bc8dd6ff, type: 2}
+  - {fileID: 2100000, guid: 84dffd5d5e1df794d89868e50e3eddac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -89,21 +89,21 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 5
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2672114512733121509
+--- !u!114 &2753827958366187292
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 110869218792321045}
+  m_GameObject: {fileID: 4268072652401344501}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 33a69d5e6c87c1d4fabbea64969ef52f, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 35a2e1de5893389439be388994103545, type: 2}
   initialSkinName: 
   fixPrefabOverrideViaMeshFilter: 2
   initialFlipX: 0
@@ -134,109 +134,109 @@ MonoBehaviour:
   _animationName: idle
   loop: 1
   timeScale: 1
---- !u!114 &1806763393250791849
+--- !u!114 &6221483699251163380
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 110869218792321045}
+  m_GameObject: {fileID: 4268072652401344501}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e581aac329ed8147ae34c8197b51524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5220017220673237097
+--- !u!114 &3994115334289893122
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 110869218792321045}
+  m_GameObject: {fileID: 4268072652401344501}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7673ca72708f495d8291498aca6afac8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   DifficultyScalingData: {fileID: 11400000, guid: 8f16f14872ddc5146a9ebe70a1b379f0, type: 2}
-  MonsterSkeleton: {fileID: 2672114512733121509}
-  MonsterMesh: {fileID: 7922889117786397683}
-  MonsterSpawnOffset: {x: 0, y: -1.372, z: 0}
-  MonsterEscapeLogic: {fileID: 5906212627842707289}
-  MonsterObjective: {fileID: 7282198310595362205}
-  MonsterWeakness: {fileID: -8299061921924051802}
+  MonsterSkeleton: {fileID: 2753827958366187292}
+  MonsterMesh: {fileID: 6206465269748803543}
+  MonsterSpawnOffset: {x: 0, y: -0.91, z: 0}
+  MonsterEscapeLogic: {fileID: 8305154945643573479}
+  MonsterObjective: {fileID: 8901661790253237368}
+  MonsterWeakness: {fileID: 5420432121178870019}
   AssignedJailCell: {fileID: 0}
   MonsterPath: {fileID: 0}
   MoveSpeed: 1.3
   TrueSpeed: 0
---- !u!114 &5906212627842707289
+--- !u!114 &8305154945643573479
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 110869218792321045}
+  m_GameObject: {fileID: 4268072652401344501}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7bcfce7b13d40cfaa0638a39aafd332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellDoorShakeAnimation: M1_CellDoor_shake
-  cellDoorBreakAnimation: M1_CellDoor_break
-  idleToBreakAnimation: idle_to_break
-  breakLoopAnimation: break_loop
-  breakOpenAnimation: break_open
-  monsterManager: {fileID: 5220017220673237097}
+  cellDoorShakeAnimation: 
+  cellDoorBreakAnimation: 
+  idleToBreakAnimation: break
+  breakLoopAnimation: 
+  breakOpenAnimation: 
+  monsterManager: {fileID: 3994115334289893122}
   JailedLayer: 1
   escapedLayer: 5
-  baseTime: 5
-  randomJailTime: 15
-  randomEscapeTime: 15
+  baseTime: 2
+  randomJailTime: 3
+  randomEscapeTime: 0
   IsAttemptingToEscape: 0
   HasEscaped: 0
---- !u!114 &7282198310595362205
+--- !u!114 &8901661790253237368
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 110869218792321045}
+  m_GameObject: {fileID: 4268072652401344501}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 162513c71b9443fdb8ad12105e39daa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MonsterManager: {fileID: 5220017220673237097}
+  MonsterManager: {fileID: 3994115334289893122}
   RoamBeforeObjective: 1
   RoamTime: 10
   IdleDuringObjective: 0
   RandomIdleTime: 5
-  jumpscareAnimationName: BabaykoJumpscare
+  jumpscareAnimationName: LykhoJumpscare
   pathTargets: []
---- !u!114 &-8299061921924051802
+--- !u!114 &5420432121178870019
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 110869218792321045}
+  m_GameObject: {fileID: 4268072652401344501}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc49ff917a084e16875ecadf31f6731c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterManager: {fileID: 5220017220673237097}
+  monsterManager: {fileID: 3994115334289893122}
   isVulnerableToLight: 1
   isVulnerableToEmp: 1
   lightStunDuration: 2
   IsRetreating: 0
---- !u!61 &6889408889497053124
+--- !u!61 &1454894874433278036
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 110869218792321045}
+  m_GameObject: {fileID: 4268072652401344501}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -262,7 +262,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.043380737, y: 1.7965479}
+  m_Offset: {x: 0.0912087, y: 1.2300881}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -273,16 +273,16 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0207791, y: 1.9180555}
+  m_Size: {x: 1.4159446, y: 2.3091824}
   m_EdgeRadius: 0
---- !u!50 &3636796501757603389
+--- !u!50 &1326450269057374202
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 110869218792321045}
+  m_GameObject: {fileID: 4268072652401344501}
   m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0

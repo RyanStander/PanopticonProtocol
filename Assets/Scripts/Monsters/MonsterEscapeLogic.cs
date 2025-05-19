@@ -10,6 +10,9 @@ namespace Monsters
     {
         [SerializeField] private string cellDoorShakeAnimation = "M1_CellDoor_shake";
         [SerializeField] private string cellDoorBreakAnimation = "M1_CellDoor_break";
+        [SerializeField] private string idleToBreakAnimation = "idle_to_break";
+        [SerializeField] private string breakLoopAnimation = "break_loop";
+        [SerializeField] private string breakOpenAnimation = "break_open";
         [SerializeField] private MonsterManager monsterManager;
         public int JailedLayer = 1;
         [SerializeField] private int escapedLayer = 5;
@@ -55,14 +58,21 @@ namespace Monsters
                 }
 
                 IsAttemptingToEscape = true;
-                TrackEntry entry =
-                    monsterManager.MonsterSkeleton.AnimationState.SetAnimation(0, "idle_to_break", false);
-                monsterManager.MonsterSkeleton.AnimationState.AddAnimation(0, "break_loop", true, 0);
-
-                entry.Complete += (_) =>
+                if (!string.IsNullOrEmpty(idleToBreakAnimation))
                 {
-                    monsterManager.AssignedJailCell.PlayAnimation(cellDoorShakeAnimation, true);
-                };
+                    TrackEntry entry =
+                        monsterManager.MonsterSkeleton.AnimationState.SetAnimation(0, idleToBreakAnimation, false);
+
+                    entry.Complete += (_) =>
+                    {
+                        if (!string.IsNullOrEmpty(cellDoorShakeAnimation))
+                            monsterManager.AssignedJailCell.PlayAnimation(cellDoorShakeAnimation, true);
+                    };
+                }
+
+                if (!string.IsNullOrEmpty(breakLoopAnimation))
+                    monsterManager.MonsterSkeleton.AnimationState.AddAnimation(0, breakLoopAnimation, true, 0);
+
 
                 escapeTimeStamp = Time.time + GetEscapeTime(randomEscapeTime);
             }
@@ -77,8 +87,10 @@ namespace Monsters
                 }
 
                 HasEscaped = true;
-                monsterManager.MonsterSkeleton.AnimationState.SetAnimation(0, "break_open", false);
-                monsterManager.AssignedJailCell.PlayAnimation(cellDoorBreakAnimation);
+                if (!string.IsNullOrEmpty(breakOpenAnimation))
+                    monsterManager.MonsterSkeleton.AnimationState.SetAnimation(0, breakOpenAnimation, false);
+                if (!string.IsNullOrEmpty(cellDoorBreakAnimation))
+                    monsterManager.AssignedJailCell.PlayAnimation(cellDoorBreakAnimation);
                 monsterMesh.sortingOrder = escapedLayer;
             }
         }
@@ -95,8 +107,8 @@ namespace Monsters
             IsAttemptingToEscape = false;
             HasEscaped = false;
             //set times
-            jailTimeStamp = Time.time + GetEscapeTime(randomJailTime) + 10;
-            escapeTimeStamp = Time.time + GetEscapeTime(randomEscapeTime) + 10;
+            jailTimeStamp = Time.time + GetEscapeTime(randomJailTime) + 5;
+            escapeTimeStamp = Time.time + GetEscapeTime(randomEscapeTime) + 5;
         }
     }
 }

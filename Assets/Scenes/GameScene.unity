@@ -4957,6 +4957,7 @@ MonoBehaviour:
   - {fileID: 2099854733}
   monsters:
   - {fileID: 110869218792321045, guid: b265dcd8dcfc4e54e8c320129bec0f61, type: 3}
+  - {fileID: 4268072652401344501, guid: f8e4b38a72220e74da775818fc4cbadd, type: 3}
   baseCurrency: 100
   growthRate: 1.15
   timeProgress: {fileID: 981465395}

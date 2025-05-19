@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ShootBolt_Material
+  m_Name: M2_Material
   m_Shader: {fileID: 4800000, guid: a79d0a36ad5ba0542946e3c3317e2aa4, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -43,7 +43,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: ab76eb76648b02a4faf1cf931c0c875e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7174249ceb0f3d64586af289b78ef257, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
