@@ -32,5 +32,8 @@ namespace GameLogic
         [Header("Battery Drain Scaling")]
         [Tooltip("How much the player's battery drains scaled based on shifts. Use with caution.")]
         public float BatteryDrainIncreaseRate = 0.01f; // Increase as shifts progress if needed
+        
+        [Header("Money")]
+        public int DetainedMonsterReward = 10;
     }
 }

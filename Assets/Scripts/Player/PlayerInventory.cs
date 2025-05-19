@@ -1,4 +1,5 @@
 ﻿using System;
+using Monsters;
 using UI;
 using UnityEngine;
 
@@ -14,6 +15,16 @@ namespace Player
         {
             if (currencyDisplay == null)
                 currencyDisplay = FindObjectOfType<CurrencyDisplay>();
+        }
+
+        private void OnEnable()
+        {
+            MonsterEvents.OnMonsterHitByPlayerWeapon += AddCurrencyOnMonsterHit;
+        }
+
+        private void OnDisable()
+        {
+            MonsterEvents.OnMonsterHitByPlayerWeapon -= AddCurrencyOnMonsterHit;
         }
 
         public bool CanSpend(int amount)
@@ -37,6 +48,11 @@ namespace Player
         public int GetCurrency()
         {
             return currency;
+        }
+        
+        private void AddCurrencyOnMonsterHit(int amount)
+        {
+            Add(amount);
         }
     }
 }

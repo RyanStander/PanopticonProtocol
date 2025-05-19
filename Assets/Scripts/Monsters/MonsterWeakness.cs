@@ -14,7 +14,6 @@ namespace Monsters
         [SerializeField] private bool isVulnerableToLight;
         [SerializeField] private bool isVulnerableToEmp;
         [SerializeField] private float lightStunDuration = 2f;
-        [SerializeField] private float empStunDuration = 5f;
 
         private JailCell assignedJailCell;
         private SkeletonAnimation monsterSkeleton;
@@ -48,6 +47,9 @@ namespace Monsters
                 IsRetreating = true;
                 monsterSkeleton.AnimationState.SetAnimation(0, "flashlight", false);
                 monsterSkeleton.AnimationState.AddAnimation(0, "flashlight_down_loop", true, 0);
+                
+                MonsterEvents.MonsterHit(monsterManager.DifficultyScalingData.DetainedMonsterReward);
+                
                 StartCoroutine(RetreatToPrisonCell(lightStunDuration));
             }
         }
@@ -64,6 +66,7 @@ namespace Monsters
             {
                 IsRetreating = true;
                 monsterSkeleton.AnimationState.SetAnimation(0, "emp_hit", false);
+                MonsterEvents.MonsterHit(monsterManager.DifficultyScalingData.DetainedMonsterReward);
                 StartCoroutine(RetreatToPrisonCell(monsterSkeleton.skeleton.Data.FindAnimation("emp_hit").Duration));
             }
         }
