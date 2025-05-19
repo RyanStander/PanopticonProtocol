@@ -7,6 +7,7 @@ namespace Monsters
 {
     public class MonsterObjectiveKill : MonsterObjective
     {
+        [SerializeField] private string jumpscareAnimationName;
         [SerializeField] private List<Transform> pathTargets;
         private Coroutine objectiveCoroutine;
         private Coroutine goToTargetCoroutine;
@@ -58,6 +59,8 @@ namespace Monsters
 
                 yield return goToTargetCoroutine = StartCoroutine(GoToTarget(target));
             }
+            
+            MonsterEvents.MonsterKill(jumpscareAnimationName);
         }
 
         private IEnumerator IdleObjective()
@@ -78,6 +81,8 @@ namespace Monsters
 
                 yield return goToTargetCoroutine = StartCoroutine(GoToTarget(target));
             }
+            
+            MonsterEvents.MonsterKill(jumpscareAnimationName);
         }
 
         private IEnumerator GoToTarget(Transform targetTransform)

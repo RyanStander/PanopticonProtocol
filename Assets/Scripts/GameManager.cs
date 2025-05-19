@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerManager playerManager;
     [SerializeField] private List<JailCell> unOccupiedJailCells;
     private List<JailCell> occupiedJailCells = new();
+    private bool gameOver;
 
     #region Monster Logic
 
@@ -48,6 +49,16 @@ public class GameManager : MonoBehaviour
         if (timeProgress == null)
             timeProgress = GetComponent<TimeProgress>();
     }
+    
+    private void OnEnable()
+    {
+        MonsterEvents.OnMonsterKill += OnGameOver;
+    }
+        
+    private void OnDisable()
+    {
+        MonsterEvents.OnMonsterKill -= OnGameOver;
+    }
 
     private void Awake()
     {
@@ -67,6 +78,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if(gameOver)
+            return;
+        
         if (timeProgress != null)
             timeProgress.ProgressShift();
     }
@@ -137,4 +151,15 @@ public class GameManager : MonoBehaviour
     }
 
     #endregion
+    
+    private void OnGameOver(string animationName)
+    {
+        gameOver = true;
+        
+        //kill all monsters
+        foreach (GameObject monster in createdMonsters)
+        {
+            DestroyImmediate(monster);
+        }
+    }
 }

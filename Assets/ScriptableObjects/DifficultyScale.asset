@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 394dfdf74f6e4ad1add091c2b3c58d03, type: 3}
   m_Name: DifficultyScale
   m_EditorClassIdentifier: 
-  BaseSpawnCount: 15
+  BaseSpawnCount: 5
   SpawnGrowthRate: 0.15
   MaxSpawnCount: 30
   MonsterWeightCurve:
@@ -52,3 +52,4 @@ MonoBehaviour:
   SpeedGrowthRate: 0.1
   IdleTimeDecreaseRate: 0.05
   BatteryDrainIncreaseRate: 0.01
+  DetainedMonsterReward: 10

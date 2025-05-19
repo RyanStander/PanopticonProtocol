@@ -208,6 +208,7 @@ MonoBehaviour:
   RoamTime: 15
   IdleDuringObjective: 0
   RandomIdleTime: 5
+  jumpscareAnimationName: BabaykoJumpscare
   pathTargets: []
 --- !u!114 &-8299061921924051802
 MonoBehaviour:
@@ -225,7 +226,6 @@ MonoBehaviour:
   isVulnerableToLight: 1
   isVulnerableToEmp: 1
   lightStunDuration: 2
-  empStunDuration: 5
   IsRetreating: 0
 --- !u!61 &6889408889497053124
 BoxCollider2D:
