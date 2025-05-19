@@ -49,12 +49,12 @@ public class GameManager : MonoBehaviour
         if (timeProgress == null)
             timeProgress = GetComponent<TimeProgress>();
     }
-    
+
     private void OnEnable()
     {
         MonsterEvents.OnMonsterKill += OnGameOver;
     }
-        
+
     private void OnDisable()
     {
         MonsterEvents.OnMonsterKill -= OnGameOver;
@@ -78,21 +78,20 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(gameOver)
+        if (gameOver)
             return;
-        
+
         if (timeProgress != null)
             timeProgress.ProgressShift();
     }
 
     private void SpawnMonsters()
     {
-        
         for (int i = 0; i < GetSpawnCount(); i++)
         {
             if (unOccupiedJailCells.Count == 0)
                 break;
-            
+
             int randomCellIndex = Random.Range(0, unOccupiedJailCells.Count);
             JailCell randomCell = unOccupiedJailCells[randomCellIndex];
             unOccupiedJailCells.RemoveAt(randomCellIndex);
@@ -109,10 +108,32 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    
+
+    public GameObject SpawnClone(GameObject monsterPrefab)
+    {
+        if (occupiedJailCells.Count == 0)
+            return null;
+
+        int randomCellIndex = Random.Range(0, occupiedJailCells.Count);
+        JailCell randomCell = occupiedJailCells[randomCellIndex];
+
+        if (randomCell != null)
+        {
+            MonsterManager monsterManager = monsterPrefab.GetComponent<MonsterManager>();
+            monsterManager.SetData(randomCell);
+            GameObject clone = Instantiate(monsterPrefab,
+                randomCell.transform.position + monsterManager.MonsterSpawnOffset, Quaternion.identity);
+            createdMonsters.Add(clone);
+            return clone;
+        }
+
+        return null;
+    }
+
     private int GetSpawnCount()
     {
-        float scaled = difficultyScalingData.BaseSpawnCount * Mathf.Pow(1f + difficultyScalingData.SpawnGrowthRate, PersistentData.CurrentShift - 1);
+        float scaled = difficultyScalingData.BaseSpawnCount *
+                       Mathf.Pow(1f + difficultyScalingData.SpawnGrowthRate, PersistentData.CurrentShift - 1);
         return Mathf.Min(Mathf.CeilToInt(scaled), difficultyScalingData.MaxSpawnCount);
     }
 
@@ -120,7 +141,7 @@ public class GameManager : MonoBehaviour
 
     public void ShiftFinished()
     {
-        playerManager.PlayerInventory.Add((int)(baseCurrency*Mathf.Pow(growthRate,PersistentData.CurrentShift-1)));
+        playerManager.PlayerInventory.Add((int)(baseCurrency * Mathf.Pow(growthRate, PersistentData.CurrentShift - 1)));
 
         //Everything should stop at this point, the player is safe
 
@@ -129,12 +150,13 @@ public class GameManager : MonoBehaviour
         {
             DestroyImmediate(monster);
         }
-        
+
         //add all occupied cells back to the unoccupied list
         foreach (JailCell occupiedCell in occupiedJailCells)
         {
             unOccupiedJailCells.Add(occupiedCell);
         }
+
         occupiedJailCells.Clear();
 
         shiftCompletedUi.SetActive(true);
@@ -152,11 +174,11 @@ public class GameManager : MonoBehaviour
     }
 
     #endregion
-    
+
     private void OnGameOver(string animationName)
     {
         gameOver = true;
-        
+
         //kill all monsters
         foreach (GameObject monster in createdMonsters)
         {

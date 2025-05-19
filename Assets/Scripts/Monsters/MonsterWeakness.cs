@@ -9,31 +9,31 @@ namespace Monsters
 {
     public class MonsterWeakness : MonoBehaviour
     {
-        [SerializeField] private MonsterManager monsterManager;
+        [SerializeField] protected MonsterManager MonsterManager;
 
         [SerializeField] private bool isVulnerableToLight;
-        [SerializeField] private bool isVulnerableToEmp;
+        [SerializeField] protected bool IsVulnerableToEmp;
         [SerializeField] private float lightStunDuration = 2f;
 
         private JailCell assignedJailCell;
-        private SkeletonAnimation monsterSkeleton;
+        protected SkeletonAnimation MonsterSkeleton;
         private List<Transform> pathTargets;
         public bool IsRetreating;
         
-        private Coroutine flashlightHoldCoroutine;
-        private bool isBeingLit;
+        protected Coroutine FlashlightHoldCoroutine;
+        protected bool IsBeingLit;
 
 
         private void OnValidate()
         {
-            if (monsterManager == null)
-                monsterManager = GetComponent<MonsterManager>();
+            if (MonsterManager == null)
+                MonsterManager = GetComponent<MonsterManager>();
         }
 
         private void Start()
         {
-            monsterSkeleton = monsterManager.MonsterSkeleton;
-            assignedJailCell = monsterManager.AssignedJailCell;
+            MonsterSkeleton = MonsterManager.MonsterSkeleton;
+            assignedJailCell = MonsterManager.AssignedJailCell;
         }
 
         #region Flashlight
@@ -42,11 +42,11 @@ namespace Monsters
         {
             if (isVulnerableToLight && other.CompareTag("Light") && !IsRetreating)
             {
-                isBeingLit = true;
+                IsBeingLit = true;
 
-                if (flashlightHoldCoroutine == null)
+                if (FlashlightHoldCoroutine == null)
                 {
-                    flashlightHoldCoroutine = StartCoroutine(HoldFlashlightToStun());
+                    FlashlightHoldCoroutine = StartCoroutine(HoldFlashlightToStun());
                 }
             }
         }
@@ -55,7 +55,7 @@ namespace Monsters
         {
             if (isVulnerableToLight && other.CompareTag("Light") && !IsRetreating)
             {
-                isBeingLit = true; // Ensure flag is true if still inside
+                IsBeingLit = true; // Ensure flag is true if still inside
             }
         }
 
@@ -63,25 +63,25 @@ namespace Monsters
         {
             if (isVulnerableToLight && other.CompareTag("Light"))
             {
-                isBeingLit = false;
+                IsBeingLit = false;
 
-                if (flashlightHoldCoroutine != null)
+                if (FlashlightHoldCoroutine != null)
                 {
-                    StopCoroutine(flashlightHoldCoroutine);
-                    flashlightHoldCoroutine = null;
+                    StopCoroutine(FlashlightHoldCoroutine);
+                    FlashlightHoldCoroutine = null;
                 }
             }
         }
         
-        private IEnumerator HoldFlashlightToStun()
+        protected virtual IEnumerator HoldFlashlightToStun()
         {
             float timer = 0f;
 
             while (timer < 2f)
             {
-                if (!isBeingLit)
+                if (!IsBeingLit)
                 {
-                    flashlightHoldCoroutine = null;
+                    FlashlightHoldCoroutine = null;
                     yield break; // Exit early if flashlight leaves
                 }
 
@@ -89,35 +89,35 @@ namespace Monsters
                 yield return null;
             }
 
-            flashlightHoldCoroutine = null;
+            FlashlightHoldCoroutine = null;
 
-            if (IsRetreating || !monsterManager.MonsterEscapeLogic.IsAttemptingToEscape)
+            if (IsRetreating || !MonsterManager.MonsterEscapeLogic.IsAttemptingToEscape)
                 yield break;
 
             IsRetreating = true;
-            monsterSkeleton.AnimationState.SetAnimation(0, "flashlight", false);
-            monsterSkeleton.AnimationState.AddAnimation(0, "flashlight_down_loop", true, 0);
+            MonsterSkeleton.AnimationState.SetAnimation(0, "flashlight", false);
+            MonsterSkeleton.AnimationState.AddAnimation(0, "flashlight_down_loop", true, 0);
 
-            MonsterEvents.MonsterHit(monsterManager.DifficultyScalingData.DetainedMonsterReward);
+            MonsterEvents.MonsterHit(MonsterManager.DifficultyScalingData.DetainedMonsterReward);
             StartCoroutine(RetreatToPrisonCell(lightStunDuration));
         }
 
         #endregion
         
-        public void ShotByEmp()
+        public virtual void ShotByEmp()
         {
             if (IsRetreating)
                 return;
 
-            if (!monsterManager.MonsterEscapeLogic.IsAttemptingToEscape)
+            if (!MonsterManager.MonsterEscapeLogic.IsAttemptingToEscape)
                 return;
 
-            if (isVulnerableToEmp)
+            if (IsVulnerableToEmp)
             {
                 IsRetreating = true;
-                monsterSkeleton.AnimationState.SetAnimation(0, "emp_hit", false);
-                MonsterEvents.MonsterHit(monsterManager.DifficultyScalingData.DetainedMonsterReward);
-                StartCoroutine(RetreatToPrisonCell(monsterSkeleton.skeleton.Data.FindAnimation("emp_hit").Duration));
+                MonsterSkeleton.AnimationState.SetAnimation(0, "emp_hit", false);
+                MonsterEvents.MonsterHit(MonsterManager.DifficultyScalingData.DetainedMonsterReward);
+                StartCoroutine(RetreatToPrisonCell(MonsterSkeleton.skeleton.Data.FindAnimation("emp_hit").Duration));
             }
         }
 
@@ -141,17 +141,17 @@ namespace Monsters
             WalkVisuals(assignedJailCell.transform);
             // Move the monster back to its assigned jail cell
             while (Vector3.Distance(transform.position,
-                       assignedJailCell.transform.position + monsterManager.MonsterSpawnOffset) > 0.1f)
+                       assignedJailCell.transform.position + MonsterManager.MonsterSpawnOffset) > 0.1f)
             {
                 transform.position = Vector3.MoveTowards(transform.position,
-                    assignedJailCell.transform.position + monsterManager.MonsterSpawnOffset,
-                    monsterManager.TrueSpeed * Time.deltaTime);
+                    assignedJailCell.transform.position + MonsterManager.MonsterSpawnOffset,
+                    MonsterManager.TrueSpeed * Time.deltaTime);
                 yield return null;
             }
 
             // Play the idle animation
-            monsterSkeleton.AnimationState.SetAnimation(0, "idle", true);
-            monsterManager.MonsterMesh.sortingOrder = monsterManager.MonsterEscapeLogic.JailedLayer;
+            MonsterSkeleton.AnimationState.SetAnimation(0, "idle", true);
+            MonsterManager.MonsterMesh.sortingOrder = MonsterManager.MonsterEscapeLogic.JailedLayer;
             //TODO: This is where we put an unbreak
             //assignedJailCell.PlayAnimation("M1_CellDoor_break");
             IsRetreating = false;
@@ -163,14 +163,14 @@ namespace Monsters
             while (Vector3.Distance(transform.position, targetTransform.position) > 0.1f)
             {
                 transform.position = Vector3.MoveTowards(transform.position, targetTransform.position,
-                    monsterManager.TrueSpeed * Time.deltaTime);
+                    MonsterManager.TrueSpeed * Time.deltaTime);
                 yield return null;
             }
         }
 
         private void GetViableTargets()
         {
-            pathTargets = monsterManager.MonsterPath.GetPathTargets();
+            pathTargets = MonsterManager.MonsterPath.GetPathTargets();
 
             float jailY = assignedJailCell.transform.position.y;
             float monsterY = transform.position.y;
@@ -220,15 +220,15 @@ namespace Monsters
 
         private void WalkVisuals(Transform targetTransform)
         {
-            monsterSkeleton.AnimationState.SetAnimation(0, "walk", true);
+            MonsterSkeleton.AnimationState.SetAnimation(0, "walk", true);
 
             //determine direction of the x axis
             int direction = targetTransform.position.x > transform.position.x ? 1 : -1;
 
             if (direction > 0)
-                monsterSkeleton.skeleton.ScaleX = -1;
+                MonsterSkeleton.skeleton.ScaleX = -1;
             else
-                monsterSkeleton.skeleton.ScaleX = 1;
+                MonsterSkeleton.skeleton.ScaleX = 1;
         }
     }
 }

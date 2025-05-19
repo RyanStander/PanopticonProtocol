@@ -7,6 +7,7 @@ namespace Monsters
 {
     public class MonsterObjective : MonoBehaviour
     {
+        [SerializeField] private string idleAnimationName = "idle";
         [SerializeField] protected MonsterManager MonsterManager;
         [SerializeField] protected bool RoamBeforeObjective = true;
         [SerializeField] protected float RoamTime = 15f;
@@ -69,7 +70,7 @@ namespace Monsters
                     yield return null; // wait one frame
                 }
 
-                MonsterManager.MonsterSkeleton.AnimationState.SetAnimation(0, "idle", true);
+                MonsterManager.MonsterSkeleton.AnimationState.SetAnimation(0, idleAnimationName, true);
 
                 // Wait/idle after moving
                 float idleDuration = UnityEngine.Random.Range(IdleDurationRange.x, IdleDurationRange.y);

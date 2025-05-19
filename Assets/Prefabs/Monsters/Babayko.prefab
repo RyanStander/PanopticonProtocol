@@ -206,6 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 162513c71b9443fdb8ad12105e39daa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idleAnimationName: idle
   MonsterManager: {fileID: 5220017220673237097}
   RoamBeforeObjective: 1
   RoamTime: 10
@@ -225,9 +226,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc49ff917a084e16875ecadf31f6731c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterManager: {fileID: 5220017220673237097}
+  MonsterManager: {fileID: 5220017220673237097}
   isVulnerableToLight: 1
-  isVulnerableToEmp: 1
+  IsVulnerableToEmp: 0
   lightStunDuration: 2
   IsRetreating: 0
 --- !u!61 &6889408889497053124
