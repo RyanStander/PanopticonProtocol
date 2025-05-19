@@ -148,6 +148,7 @@ public class GameManager : MonoBehaviour
         timeProgress.StartShift();
         SpawnMonsters();
         playerManager.PlayerMovement.UpdateScrollingListener();
+        playerManager.PlayerTorch.RechargeBattery();
     }
 
     #endregion

@@ -167,5 +167,11 @@ namespace Player
             flashlightDisabled = false;
             flashlightBatteryDisplay.DisableFlashlight(false);
         }
+
+        public void RechargeBattery()
+        {
+            //set torch to max
+                torchBatteryRemaining = torchBattery;
+        }
     }
 }

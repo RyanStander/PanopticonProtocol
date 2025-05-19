@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Spine.Unity;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI
@@ -8,6 +9,7 @@ namespace UI
         [SerializeField] private Image empGunImage;
         [SerializeField] private Sprite empOff;
         [SerializeField] private Sprite empOn;
+        [SerializeField] private SkeletonGraphic empBolt;
         
         public void ActivateGun()
         {
@@ -22,11 +24,14 @@ namespace UI
         public void Fire()
         {
             empGunImage.sprite = empOn;
+            empBolt.gameObject.SetActive(true);
+            empBolt.AnimationState.SetAnimation(0, "bolt", false);
         }
         
         public void HideBlast()
         {
             empGunImage.sprite = empOff;
+            empBolt.gameObject.SetActive(false);
         }
     }
 }

@@ -19,6 +19,10 @@ namespace Monsters
         private SkeletonAnimation monsterSkeleton;
         private List<Transform> pathTargets;
         public bool IsRetreating;
+        
+        private Coroutine flashlightHoldCoroutine;
+        private bool isBeingLit;
+
 
         private void OnValidate()
         {
@@ -32,28 +36,74 @@ namespace Monsters
             assignedJailCell = monsterManager.AssignedJailCell;
         }
 
-        //if the monster is vulnerable to light, and the light tag collider with it, the monster will play its light stun animation
-        //then after the duration ends, it will retreat to its prison cell and the door closes
+        #region Flashlight
+
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (IsRetreating)
-                return;
-
-            if (!monsterManager.MonsterEscapeLogic.IsAttemptingToEscape)
-                return;
-
-            if (isVulnerableToLight && other.CompareTag("Light"))
+            if (isVulnerableToLight && other.CompareTag("Light") && !IsRetreating)
             {
-                IsRetreating = true;
-                monsterSkeleton.AnimationState.SetAnimation(0, "flashlight", false);
-                monsterSkeleton.AnimationState.AddAnimation(0, "flashlight_down_loop", true, 0);
-                
-                MonsterEvents.MonsterHit(monsterManager.DifficultyScalingData.DetainedMonsterReward);
-                
-                StartCoroutine(RetreatToPrisonCell(lightStunDuration));
+                isBeingLit = true;
+
+                if (flashlightHoldCoroutine == null)
+                {
+                    flashlightHoldCoroutine = StartCoroutine(HoldFlashlightToStun());
+                }
             }
         }
 
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            if (isVulnerableToLight && other.CompareTag("Light") && !IsRetreating)
+            {
+                isBeingLit = true; // Ensure flag is true if still inside
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (isVulnerableToLight && other.CompareTag("Light"))
+            {
+                isBeingLit = false;
+
+                if (flashlightHoldCoroutine != null)
+                {
+                    StopCoroutine(flashlightHoldCoroutine);
+                    flashlightHoldCoroutine = null;
+                }
+            }
+        }
+        
+        private IEnumerator HoldFlashlightToStun()
+        {
+            float timer = 0f;
+
+            while (timer < 2f)
+            {
+                if (!isBeingLit)
+                {
+                    flashlightHoldCoroutine = null;
+                    yield break; // Exit early if flashlight leaves
+                }
+
+                timer += Time.deltaTime;
+                yield return null;
+            }
+
+            flashlightHoldCoroutine = null;
+
+            if (IsRetreating || !monsterManager.MonsterEscapeLogic.IsAttemptingToEscape)
+                yield break;
+
+            IsRetreating = true;
+            monsterSkeleton.AnimationState.SetAnimation(0, "flashlight", false);
+            monsterSkeleton.AnimationState.AddAnimation(0, "flashlight_down_loop", true, 0);
+
+            MonsterEvents.MonsterHit(monsterManager.DifficultyScalingData.DetainedMonsterReward);
+            StartCoroutine(RetreatToPrisonCell(lightStunDuration));
+        }
+
+        #endregion
+        
         public void ShotByEmp()
         {
             if (IsRetreating)

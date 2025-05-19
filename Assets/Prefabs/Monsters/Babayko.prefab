@@ -167,7 +167,7 @@ MonoBehaviour:
   MonsterWeakness: {fileID: -8299061921924051802}
   AssignedJailCell: {fileID: 0}
   MonsterPath: {fileID: 0}
-  MoveSpeed: 5
+  MoveSpeed: 1
   TrueSpeed: 0
 --- !u!114 &5906212627842707289
 MonoBehaviour:
@@ -204,8 +204,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MonsterManager: {fileID: 5220017220673237097}
-  RoamBeforeObjective: 0
-  RoamTime: 15
+  RoamBeforeObjective: 1
+  RoamTime: 10
   IdleDuringObjective: 0
   RandomIdleTime: 5
   jumpscareAnimationName: BabaykoJumpscare
