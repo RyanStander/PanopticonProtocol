@@ -35,6 +35,16 @@ namespace Player
                 scrollingObject.SetLoopingPos(loopingXPos);
             }
         }
+        
+        public void UpdateScrollingListener()
+        {
+            scrollingObjects = FindObjectsByType<ScrollingObject>(FindObjectsSortMode.None);
+            
+            foreach (ScrollingObject scrollingObject in scrollingObjects)
+            {
+                scrollingObject.SetLoopingPos(loopingXPos);
+            }
+        }
 
         public void HandleMovement()
         {
