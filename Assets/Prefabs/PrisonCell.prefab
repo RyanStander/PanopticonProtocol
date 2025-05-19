@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 4382172278479117631}
   - component: {fileID: 7472127626947441169}
   - component: {fileID: 3557706871524283513}
-  m_Layer: 0
+  - component: {fileID: 4607815903332168340}
+  m_Layer: 8
   m_Name: PrisonCell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,14 +70,18 @@ MonoBehaviour:
   cellDoorOpenButton: {fileID: 8060235006254585115}
   cellDoorOpenButtonLight: {fileID: 6061911604155158441}
   cellDoorSkeleton: {fileID: 5775895984085355048}
-  cellSeal: {fileID: 7818619448512147042}
   automaticUnsealTime: 5
+  empRecoveryTime: 10
   breakAnimationName: break
   breakBaiterAnimationName: breakBaiter
   electricAnimationName: electric
   idleAnimationName: idle
   shakeAnimationName: shake
   shakeBaiterAnimationName: shakeBaiter
+  cellSealAnimator: {fileID: 3557706871524283513}
+  sealCloseAnimationName: sealClose
+  sealOpenAnimationName: sealOpen
+  IsSealed: 0
 --- !u!95 &3557706871524283513
 Animator:
   serializedVersion: 5
@@ -98,6 +103,51 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!61 &4607815903332168340
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3208948240597679734}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.013155937, y: 0.0888021}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.5260773, y: 2.7694597}
+  m_EdgeRadius: 0
 --- !u!1 &3264487158762128639
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,8 +571,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.016350001, y: -0.00079999864, z: 0}
-    m_Extent: {x: 0.29665, y: 0.3136, z: 0}
+    m_Center: {x: 0.016450003, y: -0.00040000677, z: 0}
+    m_Extent: {x: 0.29285002, y: 0.3148, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -921,8 +971,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.012100011, y: -0.008300006, z: 0}
-    m_Extent: {x: 0.2879, y: 0.3042, z: 0}
+    m_Center: {x: 0.021699995, y: -0.006850004, z: 0}
+    m_Extent: {x: 0.2961, y: 0.30245, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0

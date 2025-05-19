@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Environment;
 using Monsters;
 using UI;
 using UnityEngine;
@@ -68,6 +69,10 @@ namespace Player
                     if (hit.TryGetComponent(out MonsterWeakness monsterWeakness))
                     {
                         monsterWeakness.ShotByEmp();
+                    }
+                    else if (hit.TryGetComponent(out JailCell jailCell))
+                    {
+                        jailCell.EmpDoor();  
                     }
                 }
                 

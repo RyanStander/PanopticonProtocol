@@ -14,6 +14,8 @@ namespace Environment
         [SerializeField] private GameObject cellDoorOpenButtonLight;
         [SerializeField] private SkeletonAnimation cellDoorSkeleton;
         [SerializeField] private float automaticUnsealTime = 5f;
+        [SerializeField] private float empRecoveryTime = 10f;
+        private Coroutine empRecoveryCoroutine;
 
         [Header("Animation Settings")] [SerializeField]
         private string breakAnimationName = "break";
@@ -31,6 +33,7 @@ namespace Environment
         [SerializeField] private string sealOpenAnimationName = "sealOpen";
 
         public bool IsSealed;
+        private bool isEmpd;
         private Coroutine doorAutomaticUnsealCoroutine;
         private bool facilityNoPower;
 
@@ -63,7 +66,7 @@ namespace Environment
 
         public void OpenSeal()
         {
-            if (!IsSealed)
+            if (!IsSealed || facilityNoPower || isEmpd)
                 return;
 
             IsSealed = false;
@@ -75,7 +78,7 @@ namespace Environment
 
         public void CloseSeal()
         {
-            if (IsSealed || facilityNoPower)
+            if (IsSealed || facilityNoPower || isEmpd)
                 return;
 
             IsSealed = true;
@@ -90,6 +93,33 @@ namespace Environment
             OpenSeal();
         }
 
+        public void EmpDoor()
+        {
+            if(IsSealed)
+                OpenSeal();
+            
+            isEmpd = true;
+            Electric();
+            
+            if(empRecoveryCoroutine != null)
+                StopCoroutine(empRecoveryCoroutine);
+            
+            empRecoveryCoroutine = StartCoroutine(EmpRecovery());
+            
+            if (doorAutomaticUnsealCoroutine != null)
+                StopCoroutine(doorAutomaticUnsealCoroutine);
+        }
+
+        private IEnumerator EmpRecovery()
+        {
+            yield return new WaitForSeconds(automaticUnsealTime);
+            ClearElectric();
+            isEmpd = false;
+            Idle();
+        }
+
+        #region Animations
+
         public void BreakDoor()
         {
             cellDoorSkeleton.AnimationState.SetAnimation(0, breakBaiterAnimationName, false);
@@ -100,9 +130,14 @@ namespace Environment
             cellDoorSkeleton.AnimationState.SetAnimation(0, breakAnimationName, false);
         }
 
-        public void Electric()
+        private void Electric()
         {
-            cellDoorSkeleton.AnimationState.SetAnimation(0, electricAnimationName, false);
+            cellDoorSkeleton.AnimationState.SetAnimation(1, electricAnimationName, true);
+        }
+        
+        private void ClearElectric()
+        {
+            cellDoorSkeleton.AnimationState.SetEmptyAnimation(1, 0);
         }
 
         public void Idle()
@@ -119,5 +154,7 @@ namespace Environment
         {
             cellDoorSkeleton.AnimationState.SetAnimation(0, shakeAnimationName, false);
         }
+
+        #endregion
     }
 }
