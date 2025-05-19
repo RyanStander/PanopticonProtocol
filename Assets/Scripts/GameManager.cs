@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Environment;
 using GameLogic;
 using Monsters;
@@ -9,7 +10,8 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private DifficultyScalingData difficultyScalingData;
     [SerializeField] private PlayerManager playerManager;
-    [SerializeField] private JailCell[] jailCells;
+    [SerializeField] private List<JailCell> unOccupiedJailCells;
+    private List<JailCell> occupiedJailCells = new();
 
     #region Monster Logic
 
@@ -38,8 +40,8 @@ public class GameManager : MonoBehaviour
         if (playerManager == null)
             playerManager = FindObjectOfType<PlayerManager>();
 
-        if (jailCells == null || jailCells.Length == 0)
-            jailCells = FindObjectsOfType<JailCell>();
+        if (unOccupiedJailCells == null || unOccupiedJailCells.Count == 0)
+            unOccupiedJailCells = FindObjectsOfType<JailCell>().ToList();
 
         if (timeProgress == null)
             timeProgress = GetComponent<TimeProgress>();
@@ -47,7 +49,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        if (jailCells.Length == 0)
+        if (unOccupiedJailCells.Count == 0)
         {
             Debug.LogError("No jail cells found in the scene.");
             return;
@@ -67,8 +69,13 @@ public class GameManager : MonoBehaviour
         
         for (int i = 0; i < GetSpawnCount(); i++)
         {
-            int randomCellIndex = Random.Range(0, jailCells.Length);
-            JailCell randomCell = jailCells[randomCellIndex];
+            if (unOccupiedJailCells.Count == 0)
+                break;
+            
+            int randomCellIndex = Random.Range(0, unOccupiedJailCells.Count);
+            JailCell randomCell = unOccupiedJailCells[randomCellIndex];
+            unOccupiedJailCells.RemoveAt(randomCellIndex);
+            occupiedJailCells.Add(randomCell);
 
             if (randomCell != null)
             {
@@ -101,6 +108,13 @@ public class GameManager : MonoBehaviour
         {
             DestroyImmediate(monster);
         }
+        
+        //add all occupied cells back to the unoccupied list
+        foreach (JailCell occupiedCell in occupiedJailCells)
+        {
+            unOccupiedJailCells.Add(occupiedCell);
+        }
+        occupiedJailCells.Clear();
 
         shiftCompletedUi.SetActive(true);
         createdMonsters.Clear();
