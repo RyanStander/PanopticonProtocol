@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI
 {
@@ -6,6 +7,10 @@ namespace UI
     {
         [SerializeField] private GameObject batteryBarPrefab;
         [SerializeField] private Transform batteryBarContainer;
+        [SerializeField] private GameObject flashlightDisabledDisplay;
+        [SerializeField] private Image flashlightDetail;
+        [SerializeField] private Sprite flashlightOnSprite;
+        [SerializeField] private Sprite flashlightOffSprite;
         private int batteryCount = 5;
         private GameObject[] batteryBars;
         
@@ -39,6 +44,20 @@ namespace UI
             {
                 batteryBars[i].SetActive(i < batteryToUpdate);
             }
+        }
+
+        public void SetFlashlightState(bool isOn)
+        {
+            if (flashlightDetail != null)
+            {
+                flashlightDetail.sprite = isOn ? flashlightOnSprite : flashlightOffSprite;
+            }
+        }
+
+        public void DisableFlashlight(bool isDisabled = true)
+        {
+            flashlightDisabledDisplay.SetActive(isDisabled);
+            flashlightDetail.sprite = flashlightOffSprite;
         }
     }
 }

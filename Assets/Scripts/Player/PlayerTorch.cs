@@ -118,11 +118,13 @@ namespace Player
                     if (torchDrainCoroutine != null)
                         StopCoroutine(torchDrainCoroutine);
                     torchDrainCoroutine = StartCoroutine(DrainBattery());
+                    flashlightBatteryDisplay.SetFlashlightState(true);
                 }
                 else
                 {
                     if (torchDrainCoroutine != null)
                         StopCoroutine(torchDrainCoroutine);
+                    flashlightBatteryDisplay.SetFlashlightState(false);
                 }
             }
         }
@@ -155,6 +157,7 @@ namespace Player
             flashlightDisabled = true;
             torchLight.SetActive(false);
             isTorchActive = false;
+            flashlightBatteryDisplay.DisableFlashlight();
             StartCoroutine(FlashlightDisabledCoroutine());
         }
 
@@ -162,6 +165,7 @@ namespace Player
         {
             yield return new WaitForSeconds(3f);
             flashlightDisabled = false;
+            flashlightBatteryDisplay.DisableFlashlight(false);
         }
     }
 }

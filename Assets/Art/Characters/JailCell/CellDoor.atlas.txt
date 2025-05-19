@@ -1,0 +1,13 @@
+CellDoor.png
+size:563,259
+filter:Linear,Linear
+pma:true
+cellDoor
+bounds:294,52,205,267
+rotate:90
+doorframe
+bounds:2,12,245,290
+rotate:90
+panel
+bounds:294,2,48,94
+rotate:90

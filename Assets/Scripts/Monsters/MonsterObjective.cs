@@ -1,18 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterObjective : MonoBehaviour
+namespace Monsters
 {
-    // Start is called before the first frame update
-    void Start()
+    public class MonsterObjective : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        [SerializeField] private MonsterManager monsterManager;
+        [SerializeField] private bool idleDuringObjective = true;
+        [SerializeField] private float randomIdleTime = 5f;
         
     }
 }

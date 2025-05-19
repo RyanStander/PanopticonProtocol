@@ -71,7 +71,7 @@ namespace Monsters
                 else
                     MonsterSkeleton.skeleton.ScaleX = 1;
 
-                MonsterSkeleton.AnimationState.SetAnimation(0, "M1_walk", true);
+                MonsterSkeleton.AnimationState.SetAnimation(0, "walk", true);
 
                 while (moveTimer < moveDuration)
                 {
@@ -80,7 +80,7 @@ namespace Monsters
                     yield return null; // wait one frame
                 }
 
-                MonsterSkeleton.AnimationState.SetAnimation(0, "M1_idle", true);
+                MonsterSkeleton.AnimationState.SetAnimation(0, "idle", true);
 
                 // Wait/idle after moving
                 float idleDuration = UnityEngine.Random.Range(idleDurationRange.x, idleDurationRange.y);

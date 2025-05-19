@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI
 {
     public class EmpGunUI : MonoBehaviour
     {
-        [SerializeField] private GameObject empBlast;
+        [SerializeField] private Image empGunImage;
+        [SerializeField] private Sprite empOff;
+        [SerializeField] private Sprite empOn;
         
         public void ActivateGun()
         {
@@ -18,18 +21,12 @@ namespace UI
 
         public void Fire()
         {
-            if (empBlast != null)
-            {
-                empBlast.SetActive(true);
-            }
+            empGunImage.sprite = empOn;
         }
         
         public void HideBlast()
         {
-            if (empBlast != null)
-            {
-                empBlast.SetActive(false);
-            }
+            empGunImage.sprite = empOff;
         }
     }
 }
