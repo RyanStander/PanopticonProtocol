@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using GameLogic;
 using UI;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -45,7 +46,7 @@ namespace Player
         [SerializeField] private Vector2 lightRange = new Vector2(1f, 2f);
         [SerializeField] private float falloffStrength = 1f;
         [SerializeField] private float shadowStrength = 1f;
-        
+
         [SerializeField] private FlashlightBatteryDisplay flashlightBatteryDisplay;
 
         #endregion
@@ -57,8 +58,8 @@ namespace Player
 
             if (mainCamera == null)
                 mainCamera = Camera.main;
-            
-            if(flashlightBatteryDisplay == null)
+
+            if (flashlightBatteryDisplay == null)
                 flashlightBatteryDisplay = FindObjectOfType<FlashlightBatteryDisplay>();
 
             if (torchLight != null)
@@ -105,13 +106,13 @@ namespace Player
         {
             if (flashlightDisabled)
                 return;
-            
+
             if (playerInput.ToggleTorch)
             {
                 torchLight.SetActive(!torchLight.activeSelf);
                 playerInput.ToggleTorch = false;
                 isTorchActive = torchLight.activeSelf;
-                
+
                 if (isTorchActive)
                 {
                     if (torchDrainCoroutine != null)
@@ -132,7 +133,10 @@ namespace Player
             {
                 if (torchBatteryRemaining > 0)
                 {
-                    torchBatteryRemaining -= torchBatteryDrain;
+                    torchBatteryRemaining -= torchBatteryDrain *
+                                             Mathf.Pow(
+                                                 1f + playerManager.DifficultyScalingData.BatteryDrainIncreaseRate,
+                                                 PersistentData.CurrentShift - 1);
                     flashlightBatteryDisplay.UpdateBatteryDisplay(torchBatteryRemaining);
                 }
                 else
@@ -153,7 +157,7 @@ namespace Player
             isTorchActive = false;
             StartCoroutine(FlashlightDisabledCoroutine());
         }
-        
+
         private IEnumerator FlashlightDisabledCoroutine()
         {
             yield return new WaitForSeconds(3f);

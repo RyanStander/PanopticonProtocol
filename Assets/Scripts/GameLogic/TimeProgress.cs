@@ -17,7 +17,6 @@ namespace GameLogic
         private float startTime;
         private int clockHours;
         private int clockMinutes;
-        private int currentShift;
 
         private bool shiftFinished;
 
@@ -43,8 +42,8 @@ namespace GameLogic
         public void StartShift()
         {
             startTime = Time.time;
-            currentShift++;
-            shiftDisplay.SetShift(currentShift);
+            PersistentData.CurrentShift++;
+            shiftDisplay.SetShift(PersistentData.CurrentShift);
             shiftFinished = false;
         }
 

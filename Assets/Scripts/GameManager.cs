@@ -7,16 +7,23 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private DifficultyScalingData difficultyScalingData;
     [SerializeField] private PlayerManager playerManager;
     [SerializeField] private JailCell[] jailCells;
-    
+
     #region Monster Logic
-    
+
     [SerializeField] private GameObject[] monsters;
-    [SerializeField] private int monsterSpawnCount = 5;
-    
+
     private List<GameObject> createdMonsters = new();
-    
+
+    #endregion
+
+    #region Currency Logic
+
+    [SerializeField] private float baseCurrency = 100f;
+    [SerializeField] private float growthRate = 1.15f;
+
     #endregion
 
     #region Shift Logic
@@ -25,12 +32,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject shiftCompletedUi;
 
     #endregion
-    
+
     private void OnValidate()
     {
         if (playerManager == null)
             playerManager = FindObjectOfType<PlayerManager>();
-        
+
         if (jailCells == null || jailCells.Length == 0)
             jailCells = FindObjectsOfType<JailCell>();
 
@@ -48,7 +55,7 @@ public class GameManager : MonoBehaviour
 
         SpawnMonsters();
     }
-    
+
     private void Update()
     {
         if (timeProgress != null)
@@ -57,7 +64,8 @@ public class GameManager : MonoBehaviour
 
     private void SpawnMonsters()
     {
-        for (int i = 0; i < monsterSpawnCount; i++)
+        
+        for (int i = 0; i < GetSpawnCount(); i++)
         {
             int randomCellIndex = Random.Range(0, jailCells.Length);
             JailCell randomCell = jailCells[randomCellIndex];
@@ -68,22 +76,32 @@ public class GameManager : MonoBehaviour
                 GameObject monsterPrefab = monsters[randomMonsterIndex];
                 MonsterManager monsterManager = monsterPrefab.GetComponent<MonsterManager>();
                 monsterManager.SetData(randomCell);
-                createdMonsters.Add(Instantiate(monsterPrefab, randomCell.transform.position + monsterManager.MonsterSpawnOffset, Quaternion.identity));
+                createdMonsters.Add(Instantiate(monsterPrefab,
+                    randomCell.transform.position + monsterManager.MonsterSpawnOffset, Quaternion.identity));
             }
         }
+    }
+    
+    private int GetSpawnCount()
+    {
+        float scaled = difficultyScalingData.BaseSpawnCount * Mathf.Pow(1f + difficultyScalingData.SpawnGrowthRate, PersistentData.CurrentShift - 1);
+        return Mathf.Min(Mathf.CeilToInt(scaled), difficultyScalingData.MaxSpawnCount);
     }
 
     #region Shift Logic
 
     public void ShiftFinished()
     {
+        playerManager.PlayerInventory.Add((int)(baseCurrency*Mathf.Pow(growthRate,PersistentData.CurrentShift-1)));
+
         //Everything should stop at this point, the player is safe
-        
+
         //destroy all monsters
         foreach (GameObject monster in createdMonsters)
         {
             DestroyImmediate(monster);
         }
+
         shiftCompletedUi.SetActive(true);
         createdMonsters.Clear();
         playerManager.PlayerMovement.UpdateScrollingListener();
@@ -98,6 +116,4 @@ public class GameManager : MonoBehaviour
     }
 
     #endregion
-
-    
 }

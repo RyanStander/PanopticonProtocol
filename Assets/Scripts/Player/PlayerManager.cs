@@ -1,16 +1,19 @@
 ﻿using System;
+using GameLogic;
 using UnityEngine;
 
 namespace Player
 {
     [RequireComponent(typeof(PlayerInput))]
-    [RequireComponent(typeof(PlayerMovement))] [RequireComponent(typeof(PlayerTorch))] [RequireComponent(typeof(PlayerEmpGun))]
+    [RequireComponent(typeof(PlayerMovement))] [RequireComponent(typeof(PlayerTorch))] [RequireComponent(typeof(PlayerEmpGun))] [RequireComponent(typeof(PlayerInventory))]
     public class PlayerManager : MonoBehaviour
     {
+        public DifficultyScalingData DifficultyScalingData;
         public PlayerInput PlayerInput;
         public PlayerMovement PlayerMovement;
         public PlayerTorch PlayerTorch;
         public PlayerEmpGun PlayerEmpGun;
+        public PlayerInventory PlayerInventory;
 
         private void OnValidate()
         {
@@ -25,6 +28,9 @@ namespace Player
             
             if (PlayerEmpGun == null)
                 PlayerEmpGun = GetComponent<PlayerEmpGun>();
+            
+            if (PlayerInventory == null)
+                PlayerInventory = GetComponent<PlayerInventory>();
         }
 
         private void FixedUpdate()

@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7673ca72708f495d8291498aca6afac8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DifficultyScalingData: {fileID: 11400000, guid: 8f16f14872ddc5146a9ebe70a1b379f0, type: 2}
   MonsterSkeleton: {fileID: 2672114512733121509}
   MonsterMesh: {fileID: 7922889117786397683}
   MonsterSpawnOffset: {x: 0, y: -1.372, z: 0}
@@ -175,7 +176,7 @@ MonoBehaviour:
   monsterManager: {fileID: 5220017220673237097}
   jailedLayer: 1
   escapedLayer: 5
-  timeRandomizer: 2
-  jailTime: 5
-  escapeTime: 5
+  baseTime: 5
+  randomJailTime: 5
+  randomEscapeTime: 5
   HasEscaped: 0
