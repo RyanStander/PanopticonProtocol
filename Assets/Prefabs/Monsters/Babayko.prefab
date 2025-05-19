@@ -181,8 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7bcfce7b13d40cfaa0638a39aafd332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellDoorShakeAnimation: M1_CellDoor_shake
-  cellDoorBreakAnimation: M1_CellDoor_break
+  isBaiter: 0
   idleToBreakAnimation: idle_to_break
   breakLoopAnimation: break_loop
   breakOpenAnimation: break_open
@@ -206,7 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 162513c71b9443fdb8ad12105e39daa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleAnimationName: idle
+  IdleAnimationName: idle
   MonsterManager: {fileID: 5220017220673237097}
   RoamBeforeObjective: 1
   RoamTime: 10

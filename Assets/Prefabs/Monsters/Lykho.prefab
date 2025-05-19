@@ -182,8 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7bcfce7b13d40cfaa0638a39aafd332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellDoorShakeAnimation: 
-  cellDoorBreakAnimation: 
+  isBaiter: 0
   idleToBreakAnimation: break
   breakLoopAnimation: 
   breakOpenAnimation: 
@@ -207,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 162513c71b9443fdb8ad12105e39daa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleAnimationName: idle
+  IdleAnimationName: idle
   MonsterManager: {fileID: 3994115334289893122}
   RoamBeforeObjective: 0
   RoamTime: 10
@@ -229,7 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MonsterManager: {fileID: 3994115334289893122}
   isVulnerableToLight: 1
-  IsVulnerableToEmp: 0
+  IsVulnerableToEmp: 1
   lightStunDuration: 2
   IsRetreating: 0
 --- !u!61 &1454894874433278036

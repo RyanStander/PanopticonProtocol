@@ -122,12 +122,12 @@ namespace Environment
 
         public void BreakDoor()
         {
-            cellDoorSkeleton.AnimationState.SetAnimation(0, breakBaiterAnimationName, false);
+            cellDoorSkeleton.AnimationState.SetAnimation(0, breakAnimationName, false);
         }
 
         public void BreakDoorBaiter()
         {
-            cellDoorSkeleton.AnimationState.SetAnimation(0, breakAnimationName, false);
+            cellDoorSkeleton.AnimationState.SetAnimation(0, breakBaiterAnimationName, false);
         }
 
         private void Electric()
@@ -147,12 +147,12 @@ namespace Environment
 
         public void Shake()
         {
-            cellDoorSkeleton.AnimationState.SetAnimation(0, shakeBaiterAnimationName, false);
+            cellDoorSkeleton.AnimationState.SetAnimation(0, shakeAnimationName, false);
         }
 
         public void ShakeBaiter()
         {
-            cellDoorSkeleton.AnimationState.SetAnimation(0, shakeAnimationName, false);
+            cellDoorSkeleton.AnimationState.SetAnimation(0, shakeBaiterAnimationName, false);
         }
 
         #endregion

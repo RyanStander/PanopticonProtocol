@@ -3664,7 +3664,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 0.01
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -5270,6 +5270,7 @@ MonoBehaviour:
   monsters:
   - {fileID: 110869218792321045, guid: b265dcd8dcfc4e54e8c320129bec0f61, type: 3}
   - {fileID: 4268072652401344501, guid: f8e4b38a72220e74da775818fc4cbadd, type: 3}
+  - {fileID: 5398114136167782104, guid: eb52b270b2c6cba4b9cdf50c59f5db1c, type: 3}
   baseCurrency: 100
   growthRate: 1.15
   timeProgress: {fileID: 981465395}

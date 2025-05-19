@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M1_Material
+  m_Shader: {fileID: 4800000, guid: a79d0a36ad5ba0542946e3c3317e2aa4, type: 3}
+  m_Parent: {fileID: 2100000, guid: 8703097f2423c0046a1c1efda370a380, type: 2}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - _ALPHABLEND_ON
+  - _FIXED_NORMALS_MODELSPACE
+  - _STRAIGHT_ALPHA_INPUT
+  m_InvalidKeywords:
+  - _ADAPTIVE_PROBE_VOLUMES_PER_PIXEL
+  - _DOUBLE_SIDED_LIGHTING
+  - _FULLRANGE_HARD_RAMP
+  - _RECEIVE_SHADOWS
+  - _USE8NEIGHBOURHOOD_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    AlphaDepth: true
+    IGNOREPROJECTOR: true
+    RenderType: Transparent
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 772eb5729dc736b499c235d3a77a5979, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Cutoff: 0.484
+    - _StraightAlphaInput: 1
+    m_Colors: []
+  m_BuildTextureStacks: []
