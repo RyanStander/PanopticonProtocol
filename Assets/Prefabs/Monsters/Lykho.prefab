@@ -230,6 +230,7 @@ MonoBehaviour:
   isVulnerableToLight: 1
   IsVulnerableToEmp: 1
   lightStunDuration: 2
+  flashlightHitEffect: {fileID: 0}
   IsRetreating: 0
 --- !u!61 &1454894874433278036
 BoxCollider2D:

@@ -14,6 +14,7 @@ namespace Monsters
         [SerializeField] private bool isVulnerableToLight;
         [SerializeField] protected bool IsVulnerableToEmp;
         [SerializeField] private float lightStunDuration = 2f;
+        [SerializeField] private GameObject flashlightHitEffect;
 
         private JailCell assignedJailCell;
         protected SkeletonAnimation MonsterSkeleton;
@@ -56,6 +57,10 @@ namespace Monsters
             if (isVulnerableToLight && other.CompareTag("Light") && !IsRetreating)
             {
                 IsBeingLit = true; // Ensure flag is true if still inside
+                if (flashlightHitEffect != null)
+                {
+                    flashlightHitEffect.SetActive(true);
+                }
             }
         }
 
@@ -69,6 +74,11 @@ namespace Monsters
                 {
                     StopCoroutine(FlashlightHoldCoroutine);
                     FlashlightHoldCoroutine = null;
+                }
+                
+                if (flashlightHitEffect != null)
+                {
+                    flashlightHitEffect.SetActive(true);
                 }
             }
         }
