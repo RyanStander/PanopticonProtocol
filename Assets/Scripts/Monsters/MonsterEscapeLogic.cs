@@ -7,7 +7,8 @@ namespace Monsters
 {
     public class MonsterEscapeLogic : MonoBehaviour
     {
-        
+        [SerializeField] private string cellDoorShakeAnimation = "M1_CellDoor_shake";
+        [SerializeField] private string cellDoorBreakAnimation = "M1_CellDoor_break";
         [SerializeField] private MonsterManager monsterManager;
         [SerializeField] private int jailedLayer = 1;
         [SerializeField] private int escapedLayer = 5;
@@ -21,7 +22,7 @@ namespace Monsters
         public bool HasEscaped;
 
         private MeshRenderer monsterMesh;
-        
+
         private DifficultyScalingData difficultyScalingData;
 
         private void OnValidate()
@@ -53,6 +54,9 @@ namespace Monsters
                 }
 
                 isAttemptingToEscape = true;
+                monsterManager.MonsterSkeleton.AnimationState.SetAnimation(0, "idle_to_break", false);
+                monsterManager.MonsterSkeleton.AnimationState.AddAnimation(0, "break_loop", true, 0);
+                monsterManager.AssignedJailCell.PlayAnimation(cellDoorShakeAnimation, true);
                 escapeTimeStamp = Time.time + GetEscapeTime(randomEscapeTime);
             }
 
@@ -66,6 +70,8 @@ namespace Monsters
                 }
 
                 HasEscaped = true;
+                monsterManager.MonsterSkeleton.AnimationState.SetAnimation(0, "break_open", false);
+                monsterManager.AssignedJailCell.PlayAnimation(cellDoorBreakAnimation);
                 monsterMesh.sortingOrder = escapedLayer;
             }
         }

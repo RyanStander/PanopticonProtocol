@@ -173,6 +173,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7bcfce7b13d40cfaa0638a39aafd332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cellDoorShakeAnimation: M1_CellDoor_shake
+  cellDoorBreakAnimation: M1_CellDoor_break
   monsterManager: {fileID: 5220017220673237097}
   jailedLayer: 1
   escapedLayer: 5
