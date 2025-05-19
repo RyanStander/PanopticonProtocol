@@ -15,6 +15,10 @@ GameObject:
   - component: {fileID: 1806763393250791849}
   - component: {fileID: 5220017220673237097}
   - component: {fileID: 5906212627842707289}
+  - component: {fileID: 7282198310595362205}
+  - component: {fileID: -8299061921924051802}
+  - component: {fileID: 6889408889497053124}
+  - component: {fileID: 3636796501757603389}
   m_Layer: 0
   m_Name: Babayko
   m_TagString: Untagged
@@ -158,9 +162,13 @@ MonoBehaviour:
   MonsterSkeleton: {fileID: 2672114512733121509}
   MonsterMesh: {fileID: 7922889117786397683}
   MonsterSpawnOffset: {x: 0, y: -1.372, z: 0}
-  monsterEscapeLogic: {fileID: 5906212627842707289}
-  moveSpeed: 2
+  MonsterEscapeLogic: {fileID: 5906212627842707289}
+  MonsterObjective: {fileID: 7282198310595362205}
+  MonsterWeakness: {fileID: -8299061921924051802}
   AssignedJailCell: {fileID: 0}
+  MonsterPath: {fileID: 0}
+  MoveSpeed: 5
+  TrueSpeed: 0
 --- !u!114 &5906212627842707289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,9 +184,118 @@ MonoBehaviour:
   cellDoorShakeAnimation: M1_CellDoor_shake
   cellDoorBreakAnimation: M1_CellDoor_break
   monsterManager: {fileID: 5220017220673237097}
-  jailedLayer: 1
+  JailedLayer: 1
   escapedLayer: 5
   baseTime: 5
   randomJailTime: 5
   randomEscapeTime: 5
+  IsAttemptingToEscape: 0
   HasEscaped: 0
+--- !u!114 &7282198310595362205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110869218792321045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 162513c71b9443fdb8ad12105e39daa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MonsterManager: {fileID: 5220017220673237097}
+  RoamBeforeObjective: 0
+  RoamTime: 15
+  IdleDuringObjective: 0
+  RandomIdleTime: 5
+  pathTargets: []
+--- !u!114 &-8299061921924051802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110869218792321045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc49ff917a084e16875ecadf31f6731c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterManager: {fileID: 5220017220673237097}
+  isVulnerableToLight: 1
+  isVulnerableToEmp: 1
+  lightStunDuration: 2
+  empStunDuration: 5
+  IsRetreating: 0
+--- !u!61 &6889408889497053124
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110869218792321045}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.043380737, y: 1.7965479}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.0207791, y: 1.9180555}
+  m_EdgeRadius: 0
+--- !u!50 &3636796501757603389
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110869218792321045}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

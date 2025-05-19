@@ -1,5 +1,6 @@
 ﻿using System;
 using GameLogic;
+using Spine;
 using Spine.Unity;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ namespace Monsters
         [SerializeField] private string cellDoorShakeAnimation = "M1_CellDoor_shake";
         [SerializeField] private string cellDoorBreakAnimation = "M1_CellDoor_break";
         [SerializeField] private MonsterManager monsterManager;
-        [SerializeField] private int jailedLayer = 1;
+        public int JailedLayer = 1;
         [SerializeField] private int escapedLayer = 5;
         [SerializeField] private float baseTime = 5f;
         [SerializeField] private float randomJailTime = 5f;
@@ -18,7 +19,7 @@ namespace Monsters
         [SerializeField] private float randomEscapeTime = 5f;
         private float escapeTimeStamp;
 
-        private bool isAttemptingToEscape = false;
+        public bool IsAttemptingToEscape = false;
         public bool HasEscaped;
 
         private MeshRenderer monsterMesh;
@@ -36,35 +37,41 @@ namespace Monsters
             // Set the monster to the jailed layer
             difficultyScalingData = monsterManager.DifficultyScalingData;
             monsterMesh = monsterManager.MonsterMesh;
-            monsterMesh.sortingOrder = jailedLayer;
+            monsterMesh.sortingOrder = JailedLayer;
             jailTimeStamp = Time.time + GetEscapeTime(randomJailTime);
         }
 
         public void HandleEscape()
         {
-            if (HasEscaped)
+            if (HasEscaped || monsterManager.MonsterWeakness.IsRetreating)
                 return;
 
-            if (Time.time > jailTimeStamp && !isAttemptingToEscape)
+            if (Time.time > jailTimeStamp && !IsAttemptingToEscape)
             {
-                if (monsterManager.AssignedJailCell.IsSealed)
+                if (monsterManager.AssignedJailCell.IsSealed || monsterManager.MonsterWeakness.IsRetreating)
                 {
                     jailTimeStamp = Time.time + GetEscapeTime(randomJailTime);
                     return;
                 }
 
-                isAttemptingToEscape = true;
-                monsterManager.MonsterSkeleton.AnimationState.SetAnimation(0, "idle_to_break", false);
+                IsAttemptingToEscape = true;
+                TrackEntry entry =
+                    monsterManager.MonsterSkeleton.AnimationState.SetAnimation(0, "idle_to_break", false);
                 monsterManager.MonsterSkeleton.AnimationState.AddAnimation(0, "break_loop", true, 0);
-                monsterManager.AssignedJailCell.PlayAnimation(cellDoorShakeAnimation, true);
+
+                entry.Complete += (_) =>
+                {
+                    monsterManager.AssignedJailCell.PlayAnimation(cellDoorShakeAnimation, true);
+                };
+
                 escapeTimeStamp = Time.time + GetEscapeTime(randomEscapeTime);
             }
 
-            if (isAttemptingToEscape && Time.time > escapeTimeStamp && !HasEscaped)
+            if (IsAttemptingToEscape && Time.time > escapeTimeStamp && !HasEscaped)
             {
-                if (monsterManager.AssignedJailCell.IsSealed)
+                if (monsterManager.AssignedJailCell.IsSealed || monsterManager.MonsterWeakness.IsRetreating)
                 {
-                    isAttemptingToEscape = false;
+                    IsAttemptingToEscape = false;
                     jailTimeStamp = Time.time + GetEscapeTime(randomJailTime);
                     return;
                 }
@@ -81,6 +88,15 @@ namespace Monsters
             return Mathf.Max(3f,
                 (baseTime + UnityEngine.Random.Range(0, randomTime)) *
                 Mathf.Pow(1f - difficultyScalingData.EscapeTimeDecreaseRate, PersistentData.CurrentShift - 1));
+        }
+
+        public void AbortEscape()
+        {
+            IsAttemptingToEscape = false;
+            HasEscaped = false;
+            //set times
+            jailTimeStamp = Time.time + GetEscapeTime(randomJailTime) + 10;
+            escapeTimeStamp = Time.time + GetEscapeTime(randomEscapeTime) + 10;
         }
     }
 }

@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Environment;
 using GameLogic;
 using Monsters;
 using Player;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -45,6 +47,11 @@ public class GameManager : MonoBehaviour
 
         if (timeProgress == null)
             timeProgress = GetComponent<TimeProgress>();
+    }
+
+    private void Awake()
+    {
+        PersistentData.CurrentShift = 0;
     }
 
     private void Start()
