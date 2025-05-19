@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Monsters;
 using UI;
 using UnityEngine;
 
@@ -63,7 +64,11 @@ namespace Player
 
                 foreach (Collider2D hit in enemiesHit)
                 {
-                    //TODO: stun monster
+                    //try get the MonsterWeakness component on it
+                    if (hit.TryGetComponent(out MonsterWeakness monsterWeakness))
+                    {
+                        monsterWeakness.ShotByEmp();
+                    }
                 }
                 
                 //disable the flashlight

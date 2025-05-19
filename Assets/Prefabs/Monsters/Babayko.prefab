@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: -8299061921924051802}
   - component: {fileID: 6889408889497053124}
   - component: {fileID: 3636796501757603389}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Babayko
   m_TagString: Untagged
   m_Icon: {fileID: 0}

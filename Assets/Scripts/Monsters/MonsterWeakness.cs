@@ -39,8 +39,8 @@ namespace Monsters
         {
             if (IsRetreating)
                 return;
-            
-            if(!monsterManager.MonsterEscapeLogic.IsAttemptingToEscape)
+
+            if (!monsterManager.MonsterEscapeLogic.IsAttemptingToEscape)
                 return;
 
             if (isVulnerableToLight && other.CompareTag("Light"))
@@ -52,10 +52,26 @@ namespace Monsters
             }
         }
 
+        public void ShotByEmp()
+        {
+            if (IsRetreating)
+                return;
+
+            if (!monsterManager.MonsterEscapeLogic.IsAttemptingToEscape)
+                return;
+
+            if (isVulnerableToEmp)
+            {
+                IsRetreating = true;
+                monsterSkeleton.AnimationState.SetAnimation(0, "emp_hit", false);
+                StartCoroutine(RetreatToPrisonCell(monsterSkeleton.skeleton.Data.FindAnimation("emp_hit").Duration));
+            }
+        }
+
         private IEnumerator RetreatToPrisonCell(float stunDuration)
         {
             yield return new WaitForSeconds(stunDuration);
-            
+
             GetViableTargets();
 
             while (pathTargets.Count > 0)
@@ -63,7 +79,7 @@ namespace Monsters
                 // Move towards the target
                 Transform target = pathTargets[0];
                 pathTargets.RemoveAt(0);
-                
+
                 WalkVisuals(target);
 
                 yield return StartCoroutine(GoToTarget(target));
@@ -71,7 +87,8 @@ namespace Monsters
 
             WalkVisuals(assignedJailCell.transform);
             // Move the monster back to its assigned jail cell
-            while (Vector3.Distance(transform.position, assignedJailCell.transform.position + monsterManager.MonsterSpawnOffset) > 0.1f)
+            while (Vector3.Distance(transform.position,
+                       assignedJailCell.transform.position + monsterManager.MonsterSpawnOffset) > 0.1f)
             {
                 transform.position = Vector3.MoveTowards(transform.position,
                     assignedJailCell.transform.position + monsterManager.MonsterSpawnOffset,
