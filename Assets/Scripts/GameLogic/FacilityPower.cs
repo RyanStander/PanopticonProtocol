@@ -13,6 +13,7 @@ namespace GameLogic
         [SerializeField] private GameManager gameManager;
         [SerializeField] private FacilityBatteryDisplay facilityBatteryDisplay;
         [SerializeField] private float powerLevel = 15;
+        private float currentPowerLevel;
         [SerializeField, Range(0.001f, 0.1f)] private float batteryDrain = 0.01f;
         [SerializeField, Range(0, 1)] private float drainRate = 0.1f;
 
@@ -47,7 +48,8 @@ namespace GameLogic
 
         private void Start()
         {
-            facilityBatteryDisplay.InitializeBatteryDisplay(powerLevel);
+            facilityBatteryDisplay.InitializeBatteryDisplay(currentPowerLevel);
+            currentPowerLevel = powerLevel;
         }
 
         private void OnJailCellSealed(JailCell jailCell)
@@ -71,25 +73,32 @@ namespace GameLogic
         {
             while (true)
             {
-                if (powerLevel > 0)
+                if (currentPowerLevel > 0)
                 {
-                    powerLevel -= batteryDrain *
-                                  Mathf.Pow(
-                                      1f + gameManager.DifficultyScalingData.BatteryDrainIncreaseRate,
-                                      PersistentData.CurrentShift - 1);
+                    currentPowerLevel -= batteryDrain *
+                                         Mathf.Pow(
+                                             1f + gameManager.DifficultyScalingData.BatteryDrainIncreaseRate,
+                                             PersistentData.CurrentShift - 1);
 
-                    facilityBatteryDisplay.UpdateBatteryDisplay(powerLevel);
+                    facilityBatteryDisplay.UpdateBatteryDisplay(currentPowerLevel);
                 }
             
-                if (powerLevel <= 0)
+                if (currentPowerLevel <= 0)
                 {
-                    powerLevel = 0;
-                    facilityBatteryDisplay.UpdateBatteryDisplay(powerLevel);
+                    currentPowerLevel = 0;
+                    facilityBatteryDisplay.UpdateBatteryDisplay(currentPowerLevel);
                     MonsterEvents.FacilityNoPower();
                 }
 
                 yield return new WaitForSeconds(drainRate);
             }
+        }
+        
+        public void RechargeBattery()
+        {
+            currentPowerLevel = powerLevel;
+
+            facilityBatteryDisplay.UpdateBatteryDisplay(powerLevel);
         }
     }
 }

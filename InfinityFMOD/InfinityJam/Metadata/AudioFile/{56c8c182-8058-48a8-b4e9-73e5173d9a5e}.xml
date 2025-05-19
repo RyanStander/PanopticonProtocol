@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{56c8c182-8058-48a8-b4e9-73e5173d9a5e}">
+		<property name="assetPath">
+			<value>t2 perc.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>186.66666666666666</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{86f5f290-bb59-4745-9758-2d35b4c34391}</destination>
+		</relationship>
+	</object>
+</objects>

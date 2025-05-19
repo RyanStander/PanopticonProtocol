@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{5d729dab-0cee-47dc-b31a-ae2a0ebdaeff}">
+		<property name="assetPath">
+			<value>CellDoorAttemptingToBreak.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>8</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{86f5f290-bb59-4745-9758-2d35b4c34391}</destination>
+		</relationship>
+	</object>
+</objects>

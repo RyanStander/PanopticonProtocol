@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public DifficultyScalingData DifficultyScalingData;
     [SerializeField] private PlayerManager playerManager;
     [SerializeField] private List<JailCell> unOccupiedJailCells;
+    [SerializeField] private FacilityPower facilityPower;
     private List<JailCell> occupiedJailCells = new();
     private bool gameOver;
 
@@ -171,6 +172,7 @@ public class GameManager : MonoBehaviour
         SpawnMonsters();
         playerManager.PlayerMovement.UpdateScrollingListener();
         playerManager.PlayerTorch.RechargeBattery();
+        facilityPower.RechargeBattery();
     }
 
     #endregion

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{4d2f5675-82b4-4de6-a371-c13c50bb5b10}">
+		<property name="assetPath">
+			<value>t2 2 pads voices cellos.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>186.66666666666666</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{86f5f290-bb59-4745-9758-2d35b4c34391}</destination>
+		</relationship>
+	</object>
+</objects>

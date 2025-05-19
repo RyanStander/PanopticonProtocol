@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{4af69d0a-d1b5-4d6f-ac0c-24fa59f3da0f}">
+		<property name="name">
+			<value>ShiftTimeElapsed</value>
+		</property>
+		<relationship name="folder">
+			<destination>{a51e0589-eacf-48de-b7f8-4cad96721737}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{d8cc4ac3-992a-4f12-9867-cb86ce73fb31}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{d8cc4ac3-992a-4f12-9867-cb86ce73fb31}">
+		<property name="maximum">
+			<value>6</value>
+		</property>
+		<property name="isGlobal">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="isExposedRecursively">
+			<value>false</value>
+		</property>
+		<relationship name="modulators">
+			<destination>{53663092-c088-4ff1-bfe3-30865d0684e2}</destination>
+		</relationship>
+	</object>
+	<object class="SeekModulator" id="{53663092-c088-4ff1-bfe3-30865d0684e2}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>cursorPosition</value>
+		</property>
+	</object>
+</objects>
