@@ -38,7 +38,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3835199766083152910}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6452994670217979877
@@ -199,6 +200,13 @@ MonoBehaviour:
       Data3: 1673485447
       Data4: 870773212
     Path: event:/SoundEffects/Gameplay/CellDoorBang
+  idleSound:
+    Guid:
+      Data1: 2077969475
+      Data2: 1217383459
+      Data3: 1785537932
+      Data4: -498952283
+    Path: event:/SoundEffects/Gameplay/Monsters/Clone/CloneIdle
   IsAttemptingToEscape: 0
   HasEscaped: 0
 --- !u!61 &1454894874433278036
@@ -308,4 +316,140 @@ MonoBehaviour:
   IsVulnerableToEmp: 1
   lightStunDuration: 2
   flashlightHitEffect: {fileID: 0}
+  screechSfx:
+    Guid:
+      Data1: -2063953175
+      Data2: 1088276390
+      Data3: -1193151308
+      Data4: -594751431
+    Path: event:/SoundEffects/Gameplay/Monsters/Clone/CloneScreech
   IsRetreating: 0
+--- !u!1 &5244840370194692828
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3835199766083152910}
+  - component: {fileID: 1662638991250942654}
+  - component: {fileID: 1582411826639143021}
+  - component: {fileID: 6754660892253232591}
+  m_Layer: 7
+  m_Name: Light 2D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3835199766083152910
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5244840370194692828}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: -0.6989772, w: 0.715144}
+  m_LocalPosition: {x: 0.04799094, y: 2.156865, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5720373937167134442}
+  m_LocalEulerAnglesHint: {x: 0, y: 0.06, z: -94.13}
+--- !u!114 &1662638991250942654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5244840370194692828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ComponentVersion: 1
+  m_LightType: 1
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0
+  m_Color: {r: 0, g: 0.81870055, b: 1, a: 1}
+  m_Intensity: 0.69
+  m_LightVolumeIntensity: 1
+  m_LightVolumeIntensityEnabled: 0
+  m_ApplyToSortingLayers: 00000000
+  m_LightCookieSprite: {fileID: 0}
+  m_DeprecatedPointLightCookieSprite: {fileID: 0}
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_OverlapOperation: 0
+  m_NormalMapDistance: 3
+  m_NormalMapQuality: 2
+  m_UseNormalMap: 0
+  m_ShadowIntensityEnabled: 0
+  m_ShadowIntensity: 0.75
+  m_ShadowVolumeIntensityEnabled: 0
+  m_ShadowVolumeIntensity: 0.75
+  m_LocalBounds:
+    m_Center: {x: 0.98225003, y: 0.021950006, z: 0}
+    m_Extent: {x: 1.20545, y: 0.67215, z: 0}
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 1
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.22
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: 1.9730923, y: -0.12855019, z: 0}
+  - {x: 1.8578184, y: 0.09705564, z: 0}
+  - {x: 0.71996486, y: 0.4822412, z: 0}
+  - {x: 0.34960267, y: 0.3076806, z: 0}
+  - {x: -0.012417328, y: 0.25292942, z: 0}
+  - {x: 0.0035907482, y: -0.2393436, z: 0}
+  - {x: 0.26901454, y: -0.31578523, z: 0}
+  - {x: 0.5712505, y: -0.4146773, z: 0}
+  - {x: 0.9182977, y: -0.4309351, z: 0}
+  - {x: 1.773365, y: -0.34800416, z: 0}
+--- !u!114 &1582411826639143021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5244840370194692828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1fd8daaed7b64148a34acb96ba14ce1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skeletonRenderer: {fileID: 2753827958366187292}
+  boneName: M2Head1
+  followXYPosition: 1
+  followZPosition: 1
+  followBoneRotation: 1
+  followSkeletonFlip: 1
+  followLocalScale: 0
+  followParentWorldScale: 0
+  maintainedAxisOrientation: 1
+  initializeOnAwake: 1
+--- !u!114 &6754660892253232591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5244840370194692828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e77ef1bb08e24d80859fd3776592970f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light2D: {fileID: 1662638991250942654}
+  randomStartTime: 2
+  minOnTime: 1
+  maxOnTime: 3
+  sparkleIntervals: 0.1

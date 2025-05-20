@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Environment;
+using FMODUnity;
+using GameLogic;
 using Spine.Unity;
 using UnityEngine;
 
@@ -15,6 +17,8 @@ namespace Monsters
         [SerializeField] protected bool IsVulnerableToEmp;
         [SerializeField] private float lightStunDuration = 2f;
         [SerializeField] private GameObject flashlightHitEffect;
+        
+        [SerializeField] EventReference screechSfx;
 
         private JailCell assignedJailCell;
         protected SkeletonAnimation MonsterSkeleton;
@@ -105,6 +109,7 @@ namespace Monsters
                 yield break;
 
             IsRetreating = true;
+            AudioManager.Instance.PlayOneShot(screechSfx, transform.position);
             MonsterSkeleton.AnimationState.SetAnimation(0, "flashlight", false);
             MonsterSkeleton.AnimationState.AddAnimation(0, "flashlight_down_loop", true, 0);
 
@@ -124,6 +129,7 @@ namespace Monsters
 
             if (IsVulnerableToEmp)
             {
+                AudioManager.Instance.PlayOneShot(screechSfx, transform.position);
                 IsRetreating = true;
                 MonsterSkeleton.AnimationState.SetAnimation(0, "emp_hit", false);
                 MonsterEvents.MonsterHit(MonsterManager.DifficultyScalingData.DetainedMonsterReward);

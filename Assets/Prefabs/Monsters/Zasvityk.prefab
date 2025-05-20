@@ -305,6 +305,13 @@ MonoBehaviour:
       Data3: 1673485447
       Data4: 870773212
     Path: event:/SoundEffects/Gameplay/CellDoorBang
+  idleSound:
+    Guid:
+      Data1: -909703392
+      Data2: 1179608227
+      Data3: 1771311001
+      Data4: -913219175
+    Path: event:/SoundEffects/Gameplay/Monsters/Baiter/BaiterIdle
   IsAttemptingToEscape: 0
   HasEscaped: 0
 --- !u!114 &900396476918040657
@@ -324,6 +331,13 @@ MonoBehaviour:
   IsVulnerableToEmp: 1
   lightStunDuration: 2
   flashlightHitEffect: {fileID: 0}
+  screechSfx:
+    Guid:
+      Data1: -968077834
+      Data2: 1292998004
+      Data3: 660247203
+      Data4: 2074783857
+    Path: event:/SoundEffects/Gameplay/Monsters/Baiter/BaiterScreech
   IsRetreating: 0
 --- !u!61 &4258627200671492773
 BoxCollider2D:

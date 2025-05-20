@@ -200,6 +200,13 @@ MonoBehaviour:
       Data3: 1673485447
       Data4: 870773212
     Path: event:/SoundEffects/Gameplay/CellDoorBang
+  idleSound:
+    Guid:
+      Data1: 2077969475
+      Data2: 1217383459
+      Data3: 1785537932
+      Data4: -498952283
+    Path: event:/SoundEffects/Gameplay/Monsters/Clone/CloneIdle
   IsAttemptingToEscape: 0
   HasEscaped: 0
 --- !u!114 &8901661790253237368
@@ -218,7 +225,7 @@ MonoBehaviour:
   MonsterManager: {fileID: 3994115334289893122}
   RoamBeforeObjective: 0
   RoamTime: 10
-  IdleDuringObjective: 0
+  IdleDuringObjective: 1
   RandomIdleTime: 2
   jumpscareAnimationName: LykhoJumpscare
   pathTargets: []
@@ -239,6 +246,13 @@ MonoBehaviour:
   IsVulnerableToEmp: 1
   lightStunDuration: 2
   flashlightHitEffect: {fileID: 0}
+  screechSfx:
+    Guid:
+      Data1: -2063953175
+      Data2: 1088276390
+      Data3: -1193151308
+      Data4: -594751431
+    Path: event:/SoundEffects/Gameplay/Monsters/Clone/CloneScreech
   IsRetreating: 0
 --- !u!61 &1454894874433278036
 BoxCollider2D:

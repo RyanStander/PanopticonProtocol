@@ -24,7 +24,9 @@ namespace Monsters
         [SerializeField] private float randomEscapeTime = 5f;
         private float escapeTimeStamp;
 
+        [Header("SFX")]
         [SerializeField] private EventReference sealBang;
+        [SerializeField] private EventReference idleSound;
 
         public bool IsAttemptingToEscape = false;
         public bool HasEscaped;
@@ -102,6 +104,8 @@ namespace Monsters
                 if (!string.IsNullOrEmpty(breakOpenAnimation))
                     monsterManager.MonsterSkeleton.AnimationState.SetAnimation(0, breakOpenAnimation, false);
 
+                AudioManager.Instance.PlayOneShot(idleSound, monsterManager.transform.position);
+                
                 if (isBaiter)
                     monsterManager.AssignedJailCell.BreakDoorBaiter();
                 else if (isBasic)

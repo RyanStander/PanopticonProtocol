@@ -200,6 +200,13 @@ MonoBehaviour:
       Data3: 1673485447
       Data4: 870773212
     Path: event:/SoundEffects/Gameplay/CellDoorBang
+  idleSound:
+    Guid:
+      Data1: 1444892927
+      Data2: 1277081823
+      Data3: -385770604
+      Data4: 1560312117
+    Path: event:/SoundEffects/Gameplay/Monsters/Basic/BasicIdle
   IsAttemptingToEscape: 0
   HasEscaped: 0
 --- !u!114 &7282198310595362205
@@ -216,8 +223,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IdleAnimationName: idle
   MonsterManager: {fileID: 5220017220673237097}
-  RoamBeforeObjective: 1
-  RoamTime: 10
+  RoamBeforeObjective: 0
+  RoamTime: 15
   IdleDuringObjective: 0
   RandomIdleTime: 5
   jumpscareAnimationName: BabaykoJumpscare
@@ -239,6 +246,13 @@ MonoBehaviour:
   IsVulnerableToEmp: 0
   lightStunDuration: 2
   flashlightHitEffect: {fileID: 0}
+  screechSfx:
+    Guid:
+      Data1: -1189123690
+      Data2: 1210702621
+      Data3: 947050383
+      Data4: 373268751
+    Path: event:/SoundEffects/Gameplay/Monsters/Basic/BasicScreechEmp
   IsRetreating: 0
 --- !u!61 &6889408889497053124
 BoxCollider2D:
