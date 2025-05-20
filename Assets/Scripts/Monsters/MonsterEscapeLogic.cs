@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using FMODUnity;
 using GameLogic;
 using Spine;
 using Spine.Unity;
@@ -21,6 +23,8 @@ namespace Monsters
         private float jailTimeStamp;
         [SerializeField] private float randomEscapeTime = 5f;
         private float escapeTimeStamp;
+
+        [SerializeField] private EventReference sealBang;
 
         public bool IsAttemptingToEscape = false;
         public bool HasEscaped;
@@ -53,6 +57,9 @@ namespace Monsters
             {
                 if (monsterManager.AssignedJailCell.IsSealed || monsterManager.MonsterWeakness.IsRetreating)
                 {
+                    if (monsterManager.AssignedJailCell.IsSealed)
+                        StartCoroutine(DelayedBang());
+
                     jailTimeStamp = Time.time + GetEscapeTime(randomJailTime);
                     return;
                 }
@@ -65,8 +72,8 @@ namespace Monsters
 
                     entry.Complete += (_) =>
                     {
-                        if(isBaiter)
-                             monsterManager.AssignedJailCell.ShakeBaiter();
+                        if (isBaiter)
+                            monsterManager.AssignedJailCell.ShakeBaiter();
                         else if (isBasic)
                             monsterManager.AssignedJailCell.Shake();
                     };
@@ -83,6 +90,9 @@ namespace Monsters
             {
                 if (monsterManager.AssignedJailCell.IsSealed || monsterManager.MonsterWeakness.IsRetreating)
                 {
+                    if (monsterManager.AssignedJailCell.IsSealed)
+                        StartCoroutine(DelayedBang());
+
                     IsAttemptingToEscape = false;
                     jailTimeStamp = Time.time + GetEscapeTime(randomJailTime);
                     return;
@@ -91,12 +101,12 @@ namespace Monsters
                 HasEscaped = true;
                 if (!string.IsNullOrEmpty(breakOpenAnimation))
                     monsterManager.MonsterSkeleton.AnimationState.SetAnimation(0, breakOpenAnimation, false);
-                
-                if(isBaiter)
+
+                if (isBaiter)
                     monsterManager.AssignedJailCell.BreakDoorBaiter();
                 else if (isBasic)
                     monsterManager.AssignedJailCell.BreakDoor();
-                
+
                 monsterMesh.sortingOrder = escapedLayer;
             }
         }
@@ -115,6 +125,13 @@ namespace Monsters
             //set times
             jailTimeStamp = Time.time + GetEscapeTime(randomJailTime) + 5;
             escapeTimeStamp = Time.time + GetEscapeTime(randomEscapeTime) + 5;
+        }
+        
+        private IEnumerator DelayedBang()
+        {
+            float randomDelay = UnityEngine.Random.Range(0.01f, 0.1f);
+            yield return new WaitForSeconds(randomDelay);
+            AudioManager.Instance.PlayOneShot(sealBang, monsterManager.transform.position);
         }
     }
 }

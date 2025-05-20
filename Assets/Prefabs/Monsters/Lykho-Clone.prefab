@@ -181,6 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7bcfce7b13d40cfaa0638a39aafd332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBasic: 0
   isBaiter: 0
   idleToBreakAnimation: break
   breakLoopAnimation: 
@@ -191,6 +192,13 @@ MonoBehaviour:
   baseTime: 2
   randomJailTime: 3
   randomEscapeTime: 0
+  sealBang:
+    Guid:
+      Data1: -1914272136
+      Data2: 1292623311
+      Data3: 1673485447
+      Data4: 870773212
+    Path: event:/SoundEffects/Gameplay/CellDoorBang
   IsAttemptingToEscape: 0
   HasEscaped: 0
 --- !u!61 &1454894874433278036

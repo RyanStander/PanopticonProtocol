@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using Environment;
+using FMODUnity;
+using GameLogic;
 using Monsters;
 using UI;
 using UnityEngine;
@@ -15,6 +17,9 @@ namespace Player
 
         [SerializeField] private float empRadius = 1.25f;
         [SerializeField] private LayerMask enemyLayer;
+        
+        [SerializeField] private EventReference empGunBlastSound;
+        [SerializeField] private EventReference empGunActivateSound;
         
         private PlayerInput playerInput;
         private bool isGunActive;
@@ -50,6 +55,7 @@ namespace Player
                 case true when !isGunActive:
                     isGunActive = true;
                     empGunUI.ActivateGun();
+                    AudioManager.Instance.PlayOneShot(empGunActivateSound);
                     break;
                 case false when isGunActive:
                     isGunActive = false;
@@ -62,6 +68,9 @@ namespace Player
                 Vector2 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
                 
                 Collider2D[] enemiesHit = Physics2D.OverlapCircleAll(mouseWorldPosition, empRadius, enemyLayer);
+                
+                //play the emp gun sound
+                AudioManager.Instance.PlayOneShot(empGunBlastSound, mouseWorldPosition);
 
                 foreach (Collider2D hit in enemiesHit)
                 {

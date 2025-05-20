@@ -24,6 +24,18 @@ namespace GameLogic
             DontDestroyOnLoad(this.gameObject);
         }
 
+        public void PlayOneShot(EventReference sound)
+        {
+            if (!sound.IsNull)
+            {
+                RuntimeManager.PlayOneShot(sound);
+            }
+            else
+            {
+                Debug.LogWarning("Attempted to play null FMOD event.");
+            }
+        }
+
         public void PlayOneShot(EventReference sound, Vector3 position)
         {
             if (!sound.IsNull)

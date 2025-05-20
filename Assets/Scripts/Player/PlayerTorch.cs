@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using FMODUnity;
 using GameLogic;
 using UI;
 using UnityEngine;
@@ -50,6 +51,10 @@ namespace Player
         [SerializeField] private FlashlightBatteryDisplay flashlightBatteryDisplay;
 
         #endregion
+        
+        [Header("Torch Audio Settings")]
+        [SerializeField] private EventReference flashlightOnSound;
+        [SerializeField] private EventReference flashlightOffSound;
 
         private void OnValidate()
         {
@@ -119,12 +124,14 @@ namespace Player
                         StopCoroutine(torchDrainCoroutine);
                     torchDrainCoroutine = StartCoroutine(DrainBattery());
                     flashlightBatteryDisplay.SetFlashlightState(true);
+                    AudioManager.Instance.PlayOneShot(flashlightOnSound);
                 }
                 else
                 {
                     if (torchDrainCoroutine != null)
                         StopCoroutine(torchDrainCoroutine);
                     flashlightBatteryDisplay.SetFlashlightState(false);
+                    AudioManager.Instance.PlayOneShot(flashlightOffSound);
                 }
             }
         }

@@ -133,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 227593340}
   - component: {fileID: 227593339}
-  - component: {fileID: 227593341}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -168,25 +167,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &227593341
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 227593338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 954f2173d6584a11b6de1c478f4f98e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MainMenuMusicEvent:
-    Guid:
-      Data1: -1347214269
-      Data2: 1130697202
-      Data3: 491928963
-      Data4: -1732663462
-    Path: event:/Music/MusicMainMenu
 --- !u!1 &262907225
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,8 +292,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 489859306}
-        m_TargetAssemblyTypeName: Audio.MainMenuButtons, Assembly-CSharp
+      - m_Target: {fileID: 489859307}
+        m_TargetAssemblyTypeName: Audio.MainMenuAudio, Assembly-CSharp
         m_MethodName: PlayButtonClick
         m_Mode: 1
         m_Arguments:
@@ -386,7 +366,7 @@ GameObject:
   - component: {fileID: 489859304}
   - component: {fileID: 489859303}
   - component: {fileID: 489859302}
-  - component: {fileID: 489859306}
+  - component: {fileID: 489859307}
   m_Layer: 5
   m_Name: MainMEnu
   m_TagString: Untagged
@@ -479,7 +459,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &489859306
+--- !u!114 &489859307
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -488,9 +468,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 489859301}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 326eb4191a294478aeda66dfc1650d8a, type: 3}
+  m_Script: {fileID: 11500000, guid: 954f2173d6584a11b6de1c478f4f98e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainMenuMusicEvent:
+    Guid:
+      Data1: -1347214269
+      Data2: 1130697202
+      Data3: 491928963
+      Data4: -1732663462
+    Path: event:/Music/MusicMainMenu
   ButtonClickEvent:
     Guid:
       Data1: 32522009
@@ -1009,9 +996,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 489859306}
-        m_TargetAssemblyTypeName: Audio.MainMenuButtons, Assembly-CSharp
+      - m_Target: {fileID: 489859307}
+        m_TargetAssemblyTypeName: Audio.MainMenuAudio, Assembly-CSharp
         m_MethodName: PlayButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 489859307}
+        m_TargetAssemblyTypeName: Audio.MainMenuAudio, Assembly-CSharp
+        m_MethodName: StopMainMenuMusic
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

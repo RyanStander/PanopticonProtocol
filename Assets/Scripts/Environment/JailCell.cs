@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections;
+using FMODUnity;
+using GameLogic;
 using Monsters;
 using Spine.Unity;
 using UnityEngine;
@@ -31,6 +33,11 @@ namespace Environment
 
         [SerializeField] private string sealCloseAnimationName = "sealClose";
         [SerializeField] private string sealOpenAnimationName = "sealOpen";
+
+        [Header("Seal sounds")] [SerializeField]
+        private EventReference sealClosed;
+
+        [SerializeField] private EventReference sealOpened;
 
         public bool IsSealed;
         private bool isEmpd;
@@ -69,6 +76,8 @@ namespace Environment
             if (!IsSealed || facilityNoPower || isEmpd)
                 return;
 
+            AudioManager.Instance.PlayOneShot(sealOpened, transform.position);
+
             IsSealed = false;
             cellSealAnimator.Play(sealOpenAnimationName);
             MonsterEvents.JailCellUnsealed(this);
@@ -80,6 +89,8 @@ namespace Environment
         {
             if (IsSealed || facilityNoPower || isEmpd)
                 return;
+
+            AudioManager.Instance.PlayOneShot(sealClosed, transform.position);
 
             IsSealed = true;
             cellSealAnimator.Play(sealCloseAnimationName);
@@ -95,17 +106,17 @@ namespace Environment
 
         public void EmpDoor()
         {
-            if(IsSealed)
+            if (IsSealed)
                 OpenSeal();
-            
+
             isEmpd = true;
             Electric();
-            
-            if(empRecoveryCoroutine != null)
+
+            if (empRecoveryCoroutine != null)
                 StopCoroutine(empRecoveryCoroutine);
-            
+
             empRecoveryCoroutine = StartCoroutine(EmpRecovery());
-            
+
             if (doorAutomaticUnsealCoroutine != null)
                 StopCoroutine(doorAutomaticUnsealCoroutine);
         }
@@ -134,7 +145,7 @@ namespace Environment
         {
             cellDoorSkeleton.AnimationState.SetAnimation(1, electricAnimationName, true);
         }
-        
+
         private void ClearElectric()
         {
             cellDoorSkeleton.AnimationState.SetEmptyAnimation(1, 0);

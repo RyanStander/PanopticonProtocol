@@ -1,4 +1,5 @@
 using System;
+using Audio;
 using UI;
 using UnityEngine;
 
@@ -12,6 +13,7 @@ namespace GameLogic
         
         [SerializeField] private float timeInMinutes = 6.25f;
         [SerializeField] private Vector2 timeRange = new Vector2(20, 24);
+        [SerializeField] private GameAudio gameAudio;
         
         private float timeInSeconds;
         private float startTime;
@@ -30,6 +32,9 @@ namespace GameLogic
 
             if (shiftDisplay == null)
                 shiftDisplay = FindObjectOfType<ShiftDisplay>();
+            
+            if (gameAudio == null)
+                gameAudio = FindObjectOfType<GameAudio>();
         }
 
         private void Start()
@@ -56,6 +61,11 @@ namespace GameLogic
             float progress = Mathf.Clamp01(elapsed / timeInSeconds);
 
             float fakeHour = Mathf.Lerp(timeRange.x, timeRange.y, progress);
+            
+            float normalizedTime = Mathf.InverseLerp(timeRange.x, timeRange.y, fakeHour);
+            gameAudio?.UpdateTimeParameter(normalizedTime);
+
+            
             int rawHour = Mathf.FloorToInt(fakeHour);
             clockHours = rawHour % 24;
             clockMinutes = Mathf.FloorToInt((fakeHour - rawHour) * 60);

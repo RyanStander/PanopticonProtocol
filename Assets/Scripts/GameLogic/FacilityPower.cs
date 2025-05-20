@@ -48,8 +48,8 @@ namespace GameLogic
 
         private void Start()
         {
-            facilityBatteryDisplay.InitializeBatteryDisplay(currentPowerLevel);
             currentPowerLevel = powerLevel;
+            facilityBatteryDisplay.InitializeBatteryDisplay(currentPowerLevel);
         }
 
         private void OnJailCellSealed(JailCell jailCell)

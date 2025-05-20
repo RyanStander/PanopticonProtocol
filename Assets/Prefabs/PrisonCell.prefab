@@ -81,6 +81,20 @@ MonoBehaviour:
   cellSealAnimator: {fileID: 3557706871524283513}
   sealCloseAnimationName: sealClose
   sealOpenAnimationName: sealOpen
+  sealClosed:
+    Guid:
+      Data1: 1807247694
+      Data2: 1271451879
+      Data3: -100847956
+      Data4: -1120935026
+    Path: event:/SoundEffects/Gameplay/CellDoorSealed
+  sealOpened:
+    Guid:
+      Data1: -702876050
+      Data2: 1250975769
+      Data3: 1827109011
+      Data4: 552837285
+    Path: event:/SoundEffects/Gameplay/CellDoorUnsealed
   IsSealed: 0
 --- !u!95 &3557706871524283513
 Animator:
@@ -571,8 +585,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.016450003, y: -0.00040000677, z: 0}
-    m_Extent: {x: 0.29285002, y: 0.3148, z: 0}
+    m_Center: {x: 0.019050002, y: -0.00029999018, z: 0}
+    m_Extent: {x: 0.28985, y: 0.3109, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -971,8 +985,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.021699995, y: -0.006850004, z: 0}
-    m_Extent: {x: 0.2961, y: 0.30245, z: 0}
+    m_Center: {x: 0.02035001, y: -0.0040499866, z: 0}
+    m_Extent: {x: 0.28325, y: 0.30675, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0

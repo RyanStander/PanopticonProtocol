@@ -7,8 +7,8 @@ namespace UI
         [SerializeField] private GameObject batteryBarPrefab;
         [SerializeField] private Transform batteryBarContainer;
         private int batteryCount;
-        private GameObject[] batteryBars;
-        
+        [SerializeField] private GameObject[] batteryBars;
+
         public void InitializeBatteryDisplay(float givenBatteryCount)
         {
             batteryCount = Mathf.CeilToInt(givenBatteryCount);
@@ -24,14 +24,13 @@ namespace UI
             {
                 Destroy(child.gameObject);
             }
-            
+
             for (int i = 0; i < batteryCount; i++)
             {
                 batteryBars[i] = Instantiate(batteryBarPrefab, batteryBarContainer);
-                batteryBars[i].SetActive(true);
             }
         }
-        
+
         public void UpdateBatteryDisplay(float currentBattery)
         {
             int batteryToUpdate = Mathf.CeilToInt(currentBattery);
