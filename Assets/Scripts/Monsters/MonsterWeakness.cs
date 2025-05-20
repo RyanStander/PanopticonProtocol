@@ -135,6 +135,7 @@ namespace Monsters
         {
             yield return new WaitForSeconds(stunDuration);
 
+            //Collect all path targets that should be on the way
             GetViableTargets();
 
             while (pathTargets.Count > 0)
@@ -162,8 +163,7 @@ namespace Monsters
             // Play the idle animation
             MonsterSkeleton.AnimationState.SetAnimation(0, "idle", true);
             MonsterManager.MonsterMesh.sortingOrder = MonsterManager.MonsterEscapeLogic.JailedLayer;
-            //TODO: This is where we put an unbreak
-            //assignedJailCell.PlayAnimation("M1_CellDoor_break");
+            assignedJailCell.Idle();
             IsRetreating = false;
         }
 

@@ -8,6 +8,7 @@ namespace Monsters
 {
     public class MonsterEscapeLogic : MonoBehaviour
     {
+        [SerializeField] private bool isBasic;
         [SerializeField] private bool isBaiter;
         [SerializeField] private string idleToBreakAnimation = "idle_to_break";
         [SerializeField] private string breakLoopAnimation = "break_loop";
@@ -66,7 +67,7 @@ namespace Monsters
                     {
                         if(isBaiter)
                              monsterManager.AssignedJailCell.ShakeBaiter();
-                        else
+                        else if (isBasic)
                             monsterManager.AssignedJailCell.Shake();
                     };
                 }
@@ -93,7 +94,7 @@ namespace Monsters
                 
                 if(isBaiter)
                     monsterManager.AssignedJailCell.BreakDoorBaiter();
-                else
+                else if (isBasic)
                     monsterManager.AssignedJailCell.BreakDoor();
                 
                 monsterMesh.sortingOrder = escapedLayer;
